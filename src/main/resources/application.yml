@@ -9,7 +9,7 @@ spring:
     driverClassName: oracle.jdbc.driver.OracleDriver
     password:  admin
     url: jdbc:oracle:thin:@192.168.2.45:1521:HELIOS
-    username: snbaby
+    username: root
 #让mybatis知道mapper在哪里
 mybatis:
     mapper-locations: classpath:mapper/*.xml

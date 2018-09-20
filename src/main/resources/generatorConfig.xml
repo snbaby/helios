@@ -24,7 +24,6 @@
 			targetProject="helios/src/main/java" 
 			type="XMLMAPPER"/>
 		<table
-			schema="HELIOS"
 			tableName="BASE_USER"
 			domainObjectName="BaseUser"
 			enableCountByExample="false"
