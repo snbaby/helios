@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<context id="Oracle">
+		<commentGenerator>
+			<!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+			<property
+				name="suppressAllComments"
+				value="true" />
+		</commentGenerator>
+		<jdbcConnection
+			connectionURL="jdbc:oracle:thin:@192.168.2.45:1521:HELIOS"
+			driverClass="oracle.jdbc.driver.OracleDriver"
+			password="admin"
+			userId="root" />
+		<javaModelGenerator
+			targetPackage="com.seadun.helios.entity"
+			targetProject="helios/src/main/java" />
+		<sqlMapGenerator
+			targetPackage="mapper"
+			targetProject="helios/src/main/resources"/>
+		<javaClientGenerator
+		targetPackage="com.seadun.helios.mapper"
+			targetProject="helios/src/main/java" 
+			type="XMLMAPPER"/>
+		<table
+			schema="HELIOS"
+			tableName="BASE_USER"
+			domainObjectName="BaseUser"
+			enableCountByExample="false"
+			enableUpdateByExample="false"
+			enableDeleteByExample="false"
+			enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+	</context>
+</generatorConfiguration>
