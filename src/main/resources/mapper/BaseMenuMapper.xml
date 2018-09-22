@@ -1,39 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.seadun.helios.mapper.BaseUserMapper">
-  <resultMap id="BaseResultMap" type="com.seadun.helios.entity.BaseUser">
+<mapper namespace="com.seadun.helios.mapper.BaseMenuMapper">
+  <resultMap id="BaseResultMap" type="com.seadun.helios.entity.BaseMenu">
     <id column="ID" jdbcType="VARCHAR" property="id" />
     <result column="NAME" jdbcType="VARCHAR" property="name" />
     <result column="CODE" jdbcType="VARCHAR" property="code" />
-    <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+    <result column="PATH" jdbcType="VARCHAR" property="path" />
+    <result column="PARENT_ID" jdbcType="VARCHAR" property="parentId" />
     <result column="CRT_USER" jdbcType="VARCHAR" property="crtUser" />
     <result column="CRT_TIME" jdbcType="TIMESTAMP" property="crtTime" />
     <result column="UPT_USER" jdbcType="VARCHAR" property="uptUser" />
-    <result column="UPT_TIME" jdbcType="TIMESTAMP" property="uptTime" />
+    <result column="UPT_NAME" jdbcType="TIMESTAMP" property="uptName" />
   </resultMap>
   <sql id="Base_Column_List">
-    ID, NAME, CODE, PASSWORD, CRT_USER, CRT_TIME, UPT_USER, UPT_TIME
+    ID, NAME, CODE, PATH, PARENT_ID, CRT_USER, CRT_TIME, UPT_USER, UPT_NAME
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from BASE_USER
+    from BASE_MENU
     where ID = #{id,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from BASE_USER
+    delete from BASE_MENU
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.seadun.helios.entity.BaseUser">
-    insert into BASE_USER (ID, NAME, CODE, 
-      PASSWORD, CRT_USER, CRT_TIME, 
-      UPT_USER, UPT_TIME)
+  <insert id="insert" parameterType="com.seadun.helios.entity.BaseMenu">
+    insert into BASE_MENU (ID, NAME, CODE, 
+      PATH, PARENT_ID, CRT_USER, 
+      CRT_TIME, UPT_USER, UPT_NAME
+      )
     values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
-      #{password,jdbcType=VARCHAR}, #{crtUser,jdbcType=VARCHAR}, #{crtTime,jdbcType=TIMESTAMP}, 
-      #{uptUser,jdbcType=VARCHAR}, #{uptTime,jdbcType=TIMESTAMP})
+      #{path,jdbcType=VARCHAR}, #{parentId,jdbcType=VARCHAR}, #{crtUser,jdbcType=VARCHAR}, 
+      #{crtTime,jdbcType=TIMESTAMP}, #{uptUser,jdbcType=VARCHAR}, #{uptName,jdbcType=TIMESTAMP}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.seadun.helios.entity.BaseUser">
-    insert into BASE_USER
+  <insert id="insertSelective" parameterType="com.seadun.helios.entity.BaseMenu">
+    insert into BASE_MENU
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         ID,
@@ -44,8 +47,11 @@
       <if test="code != null">
         CODE,
       </if>
-      <if test="password != null">
-        PASSWORD,
+      <if test="path != null">
+        PATH,
+      </if>
+      <if test="parentId != null">
+        PARENT_ID,
       </if>
       <if test="crtUser != null">
         CRT_USER,
@@ -56,8 +62,8 @@
       <if test="uptUser != null">
         UPT_USER,
       </if>
-      <if test="uptTime != null">
-        UPT_TIME,
+      <if test="uptName != null">
+        UPT_NAME,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -70,8 +76,11 @@
       <if test="code != null">
         #{code,jdbcType=VARCHAR},
       </if>
-      <if test="password != null">
-        #{password,jdbcType=VARCHAR},
+      <if test="path != null">
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=VARCHAR},
       </if>
       <if test="crtUser != null">
         #{crtUser,jdbcType=VARCHAR},
@@ -82,13 +91,13 @@
       <if test="uptUser != null">
         #{uptUser,jdbcType=VARCHAR},
       </if>
-      <if test="uptTime != null">
-        #{uptTime,jdbcType=TIMESTAMP},
+      <if test="uptName != null">
+        #{uptName,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.seadun.helios.entity.BaseUser">
-    update BASE_USER
+  <update id="updateByPrimaryKeySelective" parameterType="com.seadun.helios.entity.BaseMenu">
+    update BASE_MENU
     <set>
       <if test="name != null">
         NAME = #{name,jdbcType=VARCHAR},
@@ -96,8 +105,11 @@
       <if test="code != null">
         CODE = #{code,jdbcType=VARCHAR},
       </if>
-      <if test="password != null">
-        PASSWORD = #{password,jdbcType=VARCHAR},
+      <if test="path != null">
+        PATH = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        PARENT_ID = #{parentId,jdbcType=VARCHAR},
       </if>
       <if test="crtUser != null">
         CRT_USER = #{crtUser,jdbcType=VARCHAR},
@@ -108,21 +120,22 @@
       <if test="uptUser != null">
         UPT_USER = #{uptUser,jdbcType=VARCHAR},
       </if>
-      <if test="uptTime != null">
-        UPT_TIME = #{uptTime,jdbcType=TIMESTAMP},
+      <if test="uptName != null">
+        UPT_NAME = #{uptName,jdbcType=TIMESTAMP},
       </if>
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.seadun.helios.entity.BaseUser">
-    update BASE_USER
+  <update id="updateByPrimaryKey" parameterType="com.seadun.helios.entity.BaseMenu">
+    update BASE_MENU
     set NAME = #{name,jdbcType=VARCHAR},
       CODE = #{code,jdbcType=VARCHAR},
-      PASSWORD = #{password,jdbcType=VARCHAR},
+      PATH = #{path,jdbcType=VARCHAR},
+      PARENT_ID = #{parentId,jdbcType=VARCHAR},
       CRT_USER = #{crtUser,jdbcType=VARCHAR},
       CRT_TIME = #{crtTime,jdbcType=TIMESTAMP},
       UPT_USER = #{uptUser,jdbcType=VARCHAR},
-      UPT_TIME = #{uptTime,jdbcType=TIMESTAMP}
+      UPT_NAME = #{uptName,jdbcType=TIMESTAMP}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

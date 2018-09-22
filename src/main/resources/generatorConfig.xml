@@ -32,5 +32,41 @@
 			enableSelectByExample="false"
 			selectByExampleQueryId="false">
 		</table>
+		<table
+			tableName="BASE_MENU"
+			domainObjectName="BaseMenu"
+			enableCountByExample="false"
+			enableUpdateByExample="false"
+			enableDeleteByExample="false"
+			enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		<table
+			tableName="BASE_ROLE"
+			domainObjectName="BaseRole"
+			enableCountByExample="false"
+			enableUpdateByExample="false"
+			enableDeleteByExample="false"
+			enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		<table
+			tableName="BASE_ROLE_RESOURCE"
+			domainObjectName="BaseRoleResource"
+			enableCountByExample="false"
+			enableUpdateByExample="false"
+			enableDeleteByExample="false"
+			enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		<table
+			tableName="BASE_MENU_RESOURCE"
+			domainObjectName="BaseMenuResource"
+			enableCountByExample="false"
+			enableUpdateByExample="false"
+			enableDeleteByExample="false"
+			enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
 	</context>
 </generatorConfiguration>
