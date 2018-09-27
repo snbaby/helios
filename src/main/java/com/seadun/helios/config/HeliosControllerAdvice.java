@@ -4,7 +4,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.alibaba.fastjson.JSON;
 import com.seadun.helios.constant.HeliosExceptionConstants;
 import com.seadun.helios.exception.HeliosException;
@@ -12,8 +11,9 @@ import com.seadun.helios.response.ResponseFaildResult;
 
 import lombok.extern.slf4j.Slf4j;
 
-@ControllerAdvice
+
 @Slf4j
+@ControllerAdvice
 public class HeliosControllerAdvice {
 	/**
      * 全局异常捕捉处理
@@ -38,7 +38,7 @@ public class HeliosControllerAdvice {
      * @return
      */
     @ResponseBody
-    @ExceptionHandler(value = Exception.class)
+    @ExceptionHandler(value = HeliosException.class)
     public ResponseEntity<ResponseFaildResult> errorHandler(HeliosException ex) {
     	log.error(">>>>>{}",JSON.toJSONString(ex));
     	ResponseFaildResult responseFaildResult = new ResponseFaildResult();
