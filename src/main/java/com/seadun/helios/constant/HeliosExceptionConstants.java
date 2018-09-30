@@ -15,15 +15,23 @@ public class HeliosExceptionConstants {
 	public static final String USER_NOT_LOGIN_EXCEPTION_MESSAGE = "用户未登录";
 	public static final HttpStatus USER_NOT_LOGIN_EXCEPTION_HTTP_STATUS = HttpStatus.UNAUTHORIZED;
 	
+	public static final String USER_EXIST_EXCEPTION_CODE = "USER_EXIST_EXCEPTION";
+	public static final String USER_EXIST_EXCEPTION_MESSAGE = "用户已存在";
+	public static final HttpStatus USER_EXIST_EXCEPTION_HTTP_STATUS = HttpStatus.FORBIDDEN;
+	
+	public static final String ROLE_EXIST_EXCEPTION_CODE = "ROLE_EXIST_EXCEPTION";
+	public static final String ROLE_EXIST_EXCEPTION_MESSAGE = "角色已存在";
+	public static final HttpStatus ROLE_EXIST_EXCEPTION_HTTP_STATUS = HttpStatus.FORBIDDEN;
+	
 	// 系统内部错误
 	public static final String INTERNAL_SERVER_ERROR_CODE = "INTERNAL_SERVER_ERROR";
 	public static final String INTERNAL_SERVER_ERROR_MESSAGE = "系统内部异常";
 	public static final HttpStatus INTERNAL_SERVER_ERROR_HTTP_STATUS = HttpStatus.INTERNAL_SERVER_ERROR;
 	
 	// 参数不合法
-		public static final String PARAMETER_EXCEPTION_CODE = "PARAMETER_EXCEPTION";
-		public static final String PARAMETER_EXCEPTION_MESSAGE = "参数校验失败";
-		public static final HttpStatus PARAMETER_EXCEPTION_HTTP_STATUS = HttpStatus.BAD_REQUEST;
+	public static final String PARAMETER_EXCEPTION_CODE = "PARAMETER_EXCEPTION";
+	public static final String PARAMETER_EXCEPTION_MESSAGE = "参数校验失败";
+	public static final HttpStatus PARAMETER_EXCEPTION_HTTP_STATUS = HttpStatus.BAD_REQUEST;
 	
 	
 }

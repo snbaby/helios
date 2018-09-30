@@ -7,9 +7,15 @@ server:
 spring:
   datasource:
     driverClassName: oracle.jdbc.driver.OracleDriver
-    password:  admin
-    url: jdbc:oracle:thin:@192.168.2.45:1521:HELIOS
+    password: admin
+    url: jdbc:oracle:thin:@192.168.3.49:1521:HELIOS
     username: root
-#让mybatis知道mapper在哪里
 mybatis:
-    mapper-locations: classpath:mapper/*.xml
+  mapper-locations: classpath:mapper/*.xml
+pagehelper:
+  helper-dialect: oracle
+  support-methods-arguments: true
+  params: count=countSql
+  offset-as-page-num: true
+  row-bounds-with-count: true
+  reasonable: true

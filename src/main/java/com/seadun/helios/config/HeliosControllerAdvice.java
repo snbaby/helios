@@ -4,9 +4,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.alibaba.fastjson.JSON;
 import com.seadun.helios.constant.HeliosExceptionConstants;
-import com.seadun.helios.exception.HeliosException;
+import com.seadun.helios.entity.HeliosException;
 import com.seadun.helios.response.ResponseFaildResult;
 
 import lombok.extern.slf4j.Slf4j;

@@ -1,4 +1,4 @@
-package com.seadun.helios.exception;
+package com.seadun.helios.entity;
 
 import org.springframework.http.HttpStatus;
 

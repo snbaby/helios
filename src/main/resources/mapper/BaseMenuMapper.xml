@@ -12,6 +12,20 @@
     <result column="UPT_USER" jdbcType="VARCHAR" property="uptUser" />
     <result column="UPT_NAME" jdbcType="TIMESTAMP" property="uptName" />
   </resultMap>
+  
+  <resultMap id="BaseMenuTreeMap" type="com.seadun.helios.entity.BaseMenuTree">
+   <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="CODE" jdbcType="VARCHAR" property="code" />
+    <result column="PATH" jdbcType="VARCHAR" property="path" />
+    <result column="PARENT_ID" jdbcType="VARCHAR" property="parentId" />
+    <result column="CRT_USER" jdbcType="VARCHAR" property="crtUser" />
+    <result column="CRT_TIME" jdbcType="TIMESTAMP" property="crtTime" />
+    <result column="UPT_USER" jdbcType="VARCHAR" property="uptUser" />
+    <result column="UPT_NAME" jdbcType="TIMESTAMP" property="uptName" />
+    <collection property="children" select="getChildren" column="id" />
+  </resultMap>
+  
   <sql id="Base_Column_List">
     ID, NAME, CODE, PATH, PARENT_ID, CRT_USER, CRT_TIME, UPT_USER, UPT_NAME
   </sql>
@@ -24,6 +38,9 @@
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from BASE_MENU
     where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+   <delete id="clear">
+    delete from BASE_MENU
   </delete>
   <insert id="insert" parameterType="com.seadun.helios.entity.BaseMenu">
     insert into BASE_MENU (ID, NAME, CODE, 
@@ -138,4 +155,16 @@
       UPT_NAME = #{uptName,jdbcType=TIMESTAMP}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
+  <select id="getChildren" resultMap="BaseMenuTreeMap">
+    select 
+    <include refid="Base_Column_List" />
+    from BASE_MENU
+    where PARENT_ID = #{ID,jdbcType=VARCHAR}
+  </select>
+  <select id="selectTree" resultMap="BaseMenuTreeMap">
+    select 
+    <include refid="Base_Column_List" />
+    from BASE_MENU
+    where PARENT_ID = -1
+  </select>
 </mapper>

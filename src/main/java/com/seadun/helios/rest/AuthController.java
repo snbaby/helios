@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.seadun.helios.constant.HeliosExceptionConstants;
 import com.seadun.helios.entity.BaseUser;
-import com.seadun.helios.exception.HeliosException;
+import com.seadun.helios.entity.HeliosException;
 import com.seadun.helios.response.ResponseSuccessResult;
 import com.serotonin.modbus4j.exception.ErrorResponseException;
 import com.serotonin.modbus4j.exception.ModbusInitException;
