@@ -8,7 +8,7 @@ spring:
   datasource:
     driverClassName: oracle.jdbc.driver.OracleDriver
     password: admin
-    url: jdbc:oracle:thin:@192.168.3.49:1521:HELIOS
+    url: jdbc:oracle:thin:@192.168.3.67:1521:HELIOS
     username: root
 mybatis:
   mapper-locations: classpath:mapper/*.xml

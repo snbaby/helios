@@ -30,6 +30,13 @@
     select 
     <include refid="Base_Column_List" />
     from BASE_USER
+    where 1=1
+    <if test="code != ''">
+      and code = #{code,jdbcType=VARCHAR}
+    </if>
+    <if test="name != ''">
+      and name = #{name,jdbcType=VARCHAR}
+    </if>
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from BASE_USER

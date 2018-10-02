@@ -40,10 +40,15 @@ public class UserService {
 	}
 	
 	@Transactional
-	public PageInfo<BaseUser> page(int pageNum,int pageSize) {
+	public void deletrUser(String id) {
+		baseUserMapper.deleteByPrimaryKey(id);
+	}
+	
+	@Transactional
+	public PageInfo<BaseUser> page(int pageNum,int pageSize,String name,String code) {
 		RowBounds rowBounds = new RowBounds(pageNum, pageSize);
 		
-		List<BaseUser> userList = baseUserMapper.selectPage(rowBounds);
+		List<BaseUser> userList = baseUserMapper.selectPage(rowBounds,name,code);
 		PageInfo<BaseUser> pageInfo = new PageInfo<BaseUser>(userList);// 封装分页信息，便于前端展示
 		return pageInfo;
 	}

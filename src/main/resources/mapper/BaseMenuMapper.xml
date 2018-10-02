@@ -165,6 +165,6 @@
     select 
     <include refid="Base_Column_List" />
     from BASE_MENU
-    where PARENT_ID = -1
+    where PARENT_ID = '-1'
   </select>
 </mapper>
