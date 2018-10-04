@@ -40,8 +40,13 @@ public class UserService {
 	}
 	
 	@Transactional
-	public void deletrUser(String id) {
+	public void deleteUser(String id) {
 		baseUserMapper.deleteByPrimaryKey(id);
+	}
+	
+	@Transactional
+	public List<BaseUser> listUser() {
+		return baseUserMapper.list();
 	}
 	
 	@Transactional

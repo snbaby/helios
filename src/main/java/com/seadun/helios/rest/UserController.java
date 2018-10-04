@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -49,15 +50,23 @@ public class UserController {
 		ResponseSuccessResult responseResult = new ResponseSuccessResult(HttpStatus.OK.value(), "success");
 		return new ResponseEntity<>(responseResult, HttpStatus.OK);
 	}
-	
+
 	@DeleteMapping(value = { "/del" })
 	@ResponseBody
 	public ResponseEntity<ResponseSuccessResult> del(@RequestBody JSONObject jsb) {
 		log.debug("jsb:{}", jsb);
 		String id = jsb.getString("id");
 
-		userService.deletrUser(id);
+		userService.deleteUser(id);
 		ResponseSuccessResult responseResult = new ResponseSuccessResult(HttpStatus.OK.value(), "success");
+		return new ResponseEntity<>(responseResult, HttpStatus.OK);
+	}
+
+	@GetMapping(value = { "/list" })
+	@ResponseBody
+	public ResponseEntity<ResponseSuccessResult> list() {
+		ResponseSuccessResult responseResult = new ResponseSuccessResult(HttpStatus.OK.value(), "success",
+				userService.listUser());
 		return new ResponseEntity<>(responseResult, HttpStatus.OK);
 	}
 }

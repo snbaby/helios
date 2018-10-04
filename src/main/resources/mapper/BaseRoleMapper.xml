@@ -19,6 +19,11 @@
     from BASE_ROLE
     where ID = #{id,jdbcType=VARCHAR}
   </select>
+  <select id="list" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from BASE_ROLE
+  </select>
   <select id="selectByCode" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -29,6 +34,13 @@
     select 
     <include refid="Base_Column_List" />
     from BASE_ROLE
+    where 1=1
+	<if test="code != ''">
+	  and code = #{code,jdbcType=VARCHAR}
+	</if>
+	<if test="name != ''">
+	  and name = #{name,jdbcType=VARCHAR}
+	</if>
   </select>
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">

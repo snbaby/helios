@@ -1,117 +1,322 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.seadun.helios.mapper.BaseRoleResourceMapper">
-  <resultMap id="BaseResultMap" type="com.seadun.helios.entity.BaseRoleResource">
-    <id column="ID" jdbcType="VARCHAR" property="id" />
-    <result column="ROLE_ID" jdbcType="VARCHAR" property="roleId" />
-    <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
-    <result column="CRT_USER" jdbcType="VARCHAR" property="crtUser" />
-    <result column="CRT_TIME" jdbcType="TIMESTAMP" property="crtTime" />
-    <result column="UPT_USER" jdbcType="VARCHAR" property="uptUser" />
-    <result column="UPT_TIME" jdbcType="TIMESTAMP" property="uptTime" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    ID, ROLE_ID, USER_ID, CRT_USER, CRT_TIME, UPT_USER, UPT_TIME
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from BASE_ROLE_RESOURCE
-    where ID = #{id,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from BASE_ROLE_RESOURCE
-    where ID = #{id,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="com.seadun.helios.entity.BaseRoleResource">
-    insert into BASE_ROLE_RESOURCE (ID, ROLE_ID, USER_ID, 
-      CRT_USER, CRT_TIME, UPT_USER, 
-      UPT_TIME)
-    values (#{id,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
-      #{crtUser,jdbcType=VARCHAR}, #{crtTime,jdbcType=TIMESTAMP}, #{uptUser,jdbcType=VARCHAR}, 
-      #{uptTime,jdbcType=TIMESTAMP})
-  </insert>
-  <insert id="insertSelective" parameterType="com.seadun.helios.entity.BaseRoleResource">
-    insert into BASE_ROLE_RESOURCE
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        ID,
-      </if>
-      <if test="roleId != null">
-        ROLE_ID,
-      </if>
-      <if test="userId != null">
-        USER_ID,
-      </if>
-      <if test="crtUser != null">
-        CRT_USER,
-      </if>
-      <if test="crtTime != null">
-        CRT_TIME,
-      </if>
-      <if test="uptUser != null">
-        UPT_USER,
-      </if>
-      <if test="uptTime != null">
-        UPT_TIME,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=VARCHAR},
-      </if>
-      <if test="roleId != null">
-        #{roleId,jdbcType=VARCHAR},
-      </if>
-      <if test="userId != null">
-        #{userId,jdbcType=VARCHAR},
-      </if>
-      <if test="crtUser != null">
-        #{crtUser,jdbcType=VARCHAR},
-      </if>
-      <if test="crtTime != null">
-        #{crtTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="uptUser != null">
-        #{uptUser,jdbcType=VARCHAR},
-      </if>
-      <if test="uptTime != null">
-        #{uptTime,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.seadun.helios.entity.BaseRoleResource">
-    update BASE_ROLE_RESOURCE
-    <set>
-      <if test="roleId != null">
-        ROLE_ID = #{roleId,jdbcType=VARCHAR},
-      </if>
-      <if test="userId != null">
-        USER_ID = #{userId,jdbcType=VARCHAR},
-      </if>
-      <if test="crtUser != null">
-        CRT_USER = #{crtUser,jdbcType=VARCHAR},
-      </if>
-      <if test="crtTime != null">
-        CRT_TIME = #{crtTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="uptUser != null">
-        UPT_USER = #{uptUser,jdbcType=VARCHAR},
-      </if>
-      <if test="uptTime != null">
-        UPT_TIME = #{uptTime,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where ID = #{id,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.seadun.helios.entity.BaseRoleResource">
-    update BASE_ROLE_RESOURCE
-    set ROLE_ID = #{roleId,jdbcType=VARCHAR},
-      USER_ID = #{userId,jdbcType=VARCHAR},
-      CRT_USER = #{crtUser,jdbcType=VARCHAR},
-      CRT_TIME = #{crtTime,jdbcType=TIMESTAMP},
-      UPT_USER = #{uptUser,jdbcType=VARCHAR},
-      UPT_TIME = #{uptTime,jdbcType=TIMESTAMP}
-    where ID = #{id,jdbcType=VARCHAR}
-  </update>
+<mapper
+	namespace="com.seadun.helios.mapper.BaseRoleResourceMapper">
+	<resultMap
+		id="BaseResultMap"
+		type="com.seadun.helios.entity.BaseRoleResource">
+		<id
+			column="ID"
+			jdbcType="VARCHAR"
+			property="id" />
+		<result
+			column="ROLE_ID"
+			jdbcType="VARCHAR"
+			property="roleId" />
+		<result
+			column="USER_ID"
+			jdbcType="VARCHAR"
+			property="userId" />
+		<result
+			column="CRT_USER"
+			jdbcType="VARCHAR"
+			property="crtUser" />
+		<result
+			column="CRT_TIME"
+			jdbcType="TIMESTAMP"
+			property="crtTime" />
+		<result
+			column="UPT_USER"
+			jdbcType="VARCHAR"
+			property="uptUser" />
+		<result
+			column="UPT_TIME"
+			jdbcType="TIMESTAMP"
+			property="uptTime" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, ROLE_ID, USER_ID, CRT_USER, CRT_TIME, UPT_USER, UPT_TIME
+	</sql>
+
+	<resultMap
+		id="BaseRoleResourceNodeMap"
+		type="com.seadun.helios.entity.BaseRoleResourceNode">
+		<id
+			column="ID"
+			jdbcType="VARCHAR"
+			property="id" />
+		<result
+			column="ROLE_ID"
+			jdbcType="VARCHAR"
+			property="roleId" />
+		<result
+			column="USER_ID"
+			jdbcType="VARCHAR"
+			property="userId" />
+		<result
+			column="CRT_USER"
+			jdbcType="VARCHAR"
+			property="crtUser" />
+		<result
+			column="CRT_TIME"
+			jdbcType="TIMESTAMP"
+			property="crtTime" />
+		<result
+			column="UPT_USER"
+			jdbcType="VARCHAR"
+			property="uptUser" />
+		<result
+			column="UPT_TIME"
+			jdbcType="TIMESTAMP"
+			property="uptTime" />
+		<collection
+			property="baseRole"
+			select="getBaseRole"
+			column="ROLE_ID" />
+		<collection
+			property="baseUser"
+			select="getBaseUser"
+			column="USER_ID" />
+	</resultMap>
+
+	<resultMap
+		id="BaseUserMap"
+		type="com.seadun.helios.entity.BaseUser">
+		<id
+			column="ID"
+			jdbcType="VARCHAR"
+			property="id" />
+		<result
+			column="NAME"
+			jdbcType="VARCHAR"
+			property="name" />
+		<result
+			column="CODE"
+			jdbcType="VARCHAR"
+			property="code" />
+		<result
+			column="PASSWORD"
+			jdbcType="VARCHAR"
+			property="password" />
+		<result
+			column="CRT_USER"
+			jdbcType="VARCHAR"
+			property="crtUser" />
+		<result
+			column="CRT_TIME"
+			jdbcType="TIMESTAMP"
+			property="crtTime" />
+		<result
+			column="UPT_USER"
+			jdbcType="VARCHAR"
+			property="uptUser" />
+		<result
+			column="UPT_TIME"
+			jdbcType="TIMESTAMP"
+			property="uptTime" />
+	</resultMap>
+	<sql id="Base_User_Column_List">
+		ID, NAME, CODE, PASSWORD, CRT_USER, CRT_TIME, UPT_USER, UPT_TIME
+	</sql>
+
+	<resultMap
+		id="BaseRoleMap"
+		type="com.seadun.helios.entity.BaseRole">
+		<id
+			column="ID"
+			jdbcType="VARCHAR"
+			property="id" />
+		<result
+			column="NAME"
+			jdbcType="VARCHAR"
+			property="name" />
+		<result
+			column="CODE"
+			jdbcType="VARCHAR"
+			property="code" />
+		<result
+			column="CRT_USER"
+			jdbcType="VARCHAR"
+			property="crtUser" />
+		<result
+			column="CRT_TIME"
+			jdbcType="TIMESTAMP"
+			property="crtTime" />
+		<result
+			column="UPT_USER"
+			jdbcType="VARCHAR"
+			property="uptUser" />
+		<result
+			column="UPT_TIME"
+			jdbcType="TIMESTAMP"
+			property="uptTime" />
+	</resultMap>
+	<sql id="Base_Role_Column_List">
+		ID, NAME, CODE, CRT_USER, CRT_TIME, UPT_USER, UPT_TIME
+	</sql>
+
+	<select
+		id="selectByPrimaryKey"
+		parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from BASE_ROLE_RESOURCE
+		where ID = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete
+		id="delete"
+		parameterType="java.lang.String">
+		delete from BASE_ROLE_RESOURCE
+		where 1=1
+		<if test="userId != ''">
+			and USER_ID = #{userId,jdbcType=VARCHAR}
+		</if>
+		<if test="roleId != ''">
+			and ROLE_ID = #{roleId,jdbcType=VARCHAR}
+		</if>
+	</delete>
+	<delete
+		id="deleteByPrimaryKey"
+		parameterType="java.lang.String">
+		delete from BASE_ROLE_RESOURCE
+		where ID = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert
+		id="insert"
+		parameterType="com.seadun.helios.entity.BaseRoleResource">
+		insert into BASE_ROLE_RESOURCE (ID, ROLE_ID, USER_ID,
+		CRT_USER, CRT_TIME, UPT_USER,
+		UPT_TIME)
+		values (#{id,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR},
+		#{userId,jdbcType=VARCHAR},
+		#{crtUser,jdbcType=VARCHAR}, #{crtTime,jdbcType=TIMESTAMP}, #{uptUser,jdbcType=VARCHAR},
+		#{uptTime,jdbcType=TIMESTAMP})
+	</insert>
+	<insert
+		id="insertSelective"
+		parameterType="com.seadun.helios.entity.BaseRoleResource">
+		insert into BASE_ROLE_RESOURCE
+		<trim
+			prefix="("
+			suffix=")"
+			suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="roleId != null">
+				ROLE_ID,
+			</if>
+			<if test="userId != null">
+				USER_ID,
+			</if>
+			<if test="crtUser != null">
+				CRT_USER,
+			</if>
+			<if test="crtTime != null">
+				CRT_TIME,
+			</if>
+			<if test="uptUser != null">
+				UPT_USER,
+			</if>
+			<if test="uptTime != null">
+				UPT_TIME,
+			</if>
+		</trim>
+		<trim
+			prefix="values ("
+			suffix=")"
+			suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="roleId != null">
+				#{roleId,jdbcType=VARCHAR},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="crtUser != null">
+				#{crtUser,jdbcType=VARCHAR},
+			</if>
+			<if test="crtTime != null">
+				#{crtTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="uptUser != null">
+				#{uptUser,jdbcType=VARCHAR},
+			</if>
+			<if test="uptTime != null">
+				#{uptTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update
+		id="updateByPrimaryKeySelective"
+		parameterType="com.seadun.helios.entity.BaseRoleResource">
+		update BASE_ROLE_RESOURCE
+		<set>
+			<if test="roleId != null">
+				ROLE_ID = #{roleId,jdbcType=VARCHAR},
+			</if>
+			<if test="userId != null">
+				USER_ID = #{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="crtUser != null">
+				CRT_USER = #{crtUser,jdbcType=VARCHAR},
+			</if>
+			<if test="crtTime != null">
+				CRT_TIME = #{crtTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="uptUser != null">
+				UPT_USER = #{uptUser,jdbcType=VARCHAR},
+			</if>
+			<if test="uptTime != null">
+				UPT_TIME = #{uptTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+	<update
+		id="updateByPrimaryKey"
+		parameterType="com.seadun.helios.entity.BaseRoleResource">
+		update BASE_ROLE_RESOURCE
+		set ROLE_ID = #{roleId,jdbcType=VARCHAR},
+		USER_ID = #{userId,jdbcType=VARCHAR},
+		CRT_USER = #{crtUser,jdbcType=VARCHAR},
+		CRT_TIME = #{crtTime,jdbcType=TIMESTAMP},
+		UPT_USER = #{uptUser,jdbcType=VARCHAR},
+		UPT_TIME = #{uptTime,jdbcType=TIMESTAMP}
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+	<select
+		id="getBaseRole"
+		resultMap="BaseRoleMap">
+		select
+		<include refid="Base_Role_Column_List" />
+		from BASE_ROLE
+		where ID = #{ROLE_ID,jdbcType=VARCHAR}
+	</select>
+	<select
+		id="getBaseUser"
+		resultMap="BaseUserMap">
+		select
+		<include refid="Base_User_Column_List" />
+		from BASE_USER
+		where ID = #{userId,jdbcType=VARCHAR}
+	</select>
+	<select
+		id="selectNode"
+		parameterType="java.lang.String"
+		resultMap="BaseRoleResourceNodeMap">
+		select
+		<include refid="Base_Column_List" />
+		from BASE_ROLE_RESOURCE
+		where 1=1
+		<if test="userId != ''">
+			and USER_ID = #{userId,jdbcType=VARCHAR}
+		</if>
+		<if test="roleId != ''">
+			and ROLE_ID = #{roleId,jdbcType=VARCHAR}
+		</if>
+	</select>
 </mapper>
