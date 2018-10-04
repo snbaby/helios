@@ -19,10 +19,34 @@
     from BASE_MENU_RESOURCE
     where ID = #{id,jdbcType=VARCHAR}
   </select>
+  <select id="list" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from BASE_MENU_RESOURCE
+    where 1=1
+    <if test="roleId != ''">
+      and ROLE_ID =  #{roleId,jdbcType=VARCHAR}
+    </if>
+    <if test="menuId != ''">
+      and MENU_ID =  #{menuId,jdbcType=VARCHAR}
+    </if>
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from BASE_MENU_RESOURCE
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
+  
+  <delete id="delete">
+    delete from BASE_MENU_RESOURCE
+    where 1=1
+    <if test="roleId != ''">
+      and ROLE_ID =  #{roleId,jdbcType=VARCHAR}
+    </if>
+    <if test="menuId != ''">
+      and MENU_ID =  #{menuId,jdbcType=VARCHAR}
+    </if>
+  </delete>
+  
   <insert id="insert" parameterType="com.seadun.helios.entity.BaseMenuResource">
     insert into BASE_MENU_RESOURCE (ID, MENU_ID, ROLE_ID, 
       CRT_USER, CRT_TIME, UPT_USER, 
