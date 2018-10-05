@@ -21,6 +21,8 @@ public interface BaseUserMapper {
     List<BaseUser> list();
     
     List<BaseUser> selectPage(RowBounds rowBounds,@Param(value = "name") String name,@Param(value = "code") String code);
+    
+    BaseUser selectUser(@Param(value = "code") String code,@Param(value = "password") String password);
 
     int updateByPrimaryKeySelective(BaseUser record);
 

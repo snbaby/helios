@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seadun.helios.mapper.VAuthMenuMapper">
+	<resultMap
+		id="BaseResultMap"
+		type="com.seadun.helios.entity.VAuthMenu">
+		<result
+			column="USER_ID"
+			jdbcType="VARCHAR"
+			property="userId" />
+		<result
+			column="ROLE_ID"
+			jdbcType="VARCHAR"
+			property="roleId" />
+		<result
+			column="MENU_ID"
+			jdbcType="VARCHAR"
+			property="menuId" />
+		<result
+			column="ID"
+			jdbcType="VARCHAR"
+			property="id" />
+		<result
+			column="NAME"
+			jdbcType="VARCHAR"
+			property="name" />
+		<result
+			column="CODE"
+			jdbcType="VARCHAR"
+			property="code" />
+		<result
+			column="PATH"
+			jdbcType="VARCHAR"
+			property="path" />
+		<result
+			column="PARENT_ID"
+			jdbcType="VARCHAR"
+			property="parentId" />
+		<result
+			column="CRT_USER"
+			jdbcType="VARCHAR"
+			property="crtUser" />
+		<result
+			column="CRT_TIME"
+			jdbcType="TIMESTAMP"
+			property="crtTime" />
+		<result
+			column="UPT_USER"
+			jdbcType="VARCHAR"
+			property="uptUser" />
+		<result
+			column="UPT_NAME"
+			jdbcType="TIMESTAMP"
+			property="uptName" />
+	</resultMap>
+
+	<resultMap
+		id="VAuthMenuTreeMap"
+		type="com.seadun.helios.entity.VAuthMenuTree">
+		<result
+			column="USER_ID"
+			jdbcType="VARCHAR"
+			property="userId" />
+		<result
+			column="ROLE_ID"
+			jdbcType="VARCHAR"
+			property="roleId" />
+		<result
+			column="MENU_ID"
+			jdbcType="VARCHAR"
+			property="menuId" />
+		<result
+			column="ID"
+			jdbcType="VARCHAR"
+			property="id" />
+		<result
+			column="NAME"
+			jdbcType="VARCHAR"
+			property="name" />
+		<result
+			column="CODE"
+			jdbcType="VARCHAR"
+			property="code" />
+		<result
+			column="PATH"
+			jdbcType="VARCHAR"
+			property="path" />
+		<result
+			column="PARENT_ID"
+			jdbcType="VARCHAR"
+			property="parentId" />
+		<result
+			column="CRT_USER"
+			jdbcType="VARCHAR"
+			property="crtUser" />
+		<result
+			column="CRT_TIME"
+			jdbcType="TIMESTAMP"
+			property="crtTime" />
+		<result
+			column="UPT_USER"
+			jdbcType="VARCHAR"
+			property="uptUser" />
+		<result
+			column="UPT_NAME"
+			jdbcType="TIMESTAMP"
+			property="uptName" />
+		<collection
+			property="children"
+			select="getChildren"
+			column="{id=ID,userId=USER_ID}" />
+	</resultMap>
+
+	<insert
+		id="insert"
+		parameterType="com.seadun.helios.entity.VAuthMenu">
+		insert into V_AUTH_MENU (USER_ID, ROLE_ID, MENU_ID,
+		ID,
+		NAME, CODE, PATH,
+		PARENT_ID, CRT_USER, CRT_TIME,
+		UPT_USER, UPT_NAME)
+		values (#{userId,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR},
+		#{menuId,jdbcType=VARCHAR},
+		#{id,jdbcType=VARCHAR},
+		#{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR},
+		#{path,jdbcType=VARCHAR},
+		#{parentId,jdbcType=VARCHAR},
+		#{crtUser,jdbcType=VARCHAR}, #{crtTime,jdbcType=TIMESTAMP},
+		#{uptUser,jdbcType=VARCHAR}, #{uptName,jdbcType=TIMESTAMP})
+	</insert>
+	<insert
+		id="insertSelective"
+		parameterType="com.seadun.helios.entity.VAuthMenu">
+		insert into V_AUTH_MENU
+		<trim
+			prefix="("
+			suffix=")"
+			suffixOverrides=",">
+			<if test="userId != null">
+				USER_ID,
+			</if>
+			<if test="roleId != null">
+				ROLE_ID,
+			</if>
+			<if test="menuId != null">
+				MENU_ID,
+			</if>
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="name != null">
+				NAME,
+			</if>
+			<if test="code != null">
+				CODE,
+			</if>
+			<if test="path != null">
+				PATH,
+			</if>
+			<if test="parentId != null">
+				PARENT_ID,
+			</if>
+			<if test="crtUser != null">
+				CRT_USER,
+			</if>
+			<if test="crtTime != null">
+				CRT_TIME,
+			</if>
+			<if test="uptUser != null">
+				UPT_USER,
+			</if>
+			<if test="uptName != null">
+				UPT_NAME,
+			</if>
+		</trim>
+		<trim
+			prefix="values ("
+			suffix=")"
+			suffixOverrides=",">
+			<if test="userId != null">
+				#{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="roleId != null">
+				#{roleId,jdbcType=VARCHAR},
+			</if>
+			<if test="menuId != null">
+				#{menuId,jdbcType=VARCHAR},
+			</if>
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="code != null">
+				#{code,jdbcType=VARCHAR},
+			</if>
+			<if test="path != null">
+				#{path,jdbcType=VARCHAR},
+			</if>
+			<if test="parentId != null">
+				#{parentId,jdbcType=VARCHAR},
+			</if>
+			<if test="crtUser != null">
+				#{crtUser,jdbcType=VARCHAR},
+			</if>
+			<if test="crtTime != null">
+				#{crtTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="uptUser != null">
+				#{uptUser,jdbcType=VARCHAR},
+			</if>
+			<if test="uptName != null">
+				#{uptName,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<select
+		id="getChildren"
+		resultMap="VAuthMenuTreeMap">
+		select
+		USER_ID, MENU_ID,
+		ID, NAME, CODE, PATH,
+		PARENT_ID,
+		CRT_USER, CRT_TIME,
+		UPT_USER, UPT_NAME
+		from V_AUTH_MENU
+		where PARENT_ID =
+		#{id,jdbcType=VARCHAR}
+		and USER_ID = #{userId,jdbcType=VARCHAR}
+		group by
+		USER_ID, MENU_ID,
+		ID, NAME, CODE, PATH,
+		PARENT_ID, CRT_USER, CRT_TIME,
+		UPT_USER, UPT_NAME
+	</select>
+	<select
+		id="selectTree"
+		resultMap="VAuthMenuTreeMap">
+		select
+		USER_ID, MENU_ID,
+		ID, NAME, CODE, PATH,
+		PARENT_ID,
+		CRT_USER, CRT_TIME,
+		UPT_USER, UPT_NAME
+		from V_AUTH_MENU
+		where PARENT_ID =
+		'-1'
+		and USER_ID = #{userId,jdbcType=VARCHAR}
+		group by USER_ID, MENU_ID,
+		ID, NAME, CODE, PATH,
+		PARENT_ID, CRT_USER, CRT_TIME,
+		UPT_USER, UPT_NAME
+	</select>
+	<select
+		id="select"
+		resultMap="BaseResultMap">
+		select
+		USER_ID, MENU_ID,
+		ID, NAME, CODE, PATH,
+		PARENT_ID,
+		CRT_USER, CRT_TIME,
+		UPT_USER, UPT_NAME
+		from V_AUTH_MENU
+		where USER_ID = #{userId,jdbcType=VARCHAR}
+		group by USER_ID, MENU_ID,
+		ID, NAME, CODE, PATH,
+		PARENT_ID, CRT_USER, CRT_TIME,
+		UPT_USER, UPT_NAME
+	</select>
+</mapper>

@@ -26,6 +26,13 @@
     from BASE_USER
     where CODE = #{code,jdbcType=VARCHAR}
   </select>
+  <select id="selectUser" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from BASE_USER
+    where CODE = #{code,jdbcType=VARCHAR}
+    and PASSWORD = #{password,jdbcType=VARCHAR}
+  </select>
   <select id="selectPage" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

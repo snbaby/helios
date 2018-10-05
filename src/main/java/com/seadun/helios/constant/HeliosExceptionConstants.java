@@ -3,9 +3,9 @@ package com.seadun.helios.constant;
 import org.springframework.http.HttpStatus;
 
 public class HeliosExceptionConstants {
-	public final static String USER_VALID_FAILD_CODE =  "USER_VALID_FAILD";
-	public final static String USER_VALID_FAILD_MESSAGE =  "用户名或密码错误.";
-	public static final HttpStatus USER_VALID_FAILD_HTTP_STATUS = HttpStatus.FORBIDDEN;
+	public final static String USER_VALID_FAILD_EXCEPTION_CODE =  "USER_VALID_FAILD_EXCEPTION";
+	public final static String USER_VALID_FAILD_EXCEPTION_MESSAGE =  "用户名或密码错误.";
+	public static final HttpStatus USER_VALID_FAILD_EXCEPTION_HTTP_STATUS = HttpStatus.FORBIDDEN;
 	
 	public final static String USER_VALID_PASSWORD_FAILD_CODE =  "USER_VALID_PASSWORD_FAILD";
 	public final static String USER_VALID_PASSWORD_FAILD_MESSAGE =  "原密码错误.";

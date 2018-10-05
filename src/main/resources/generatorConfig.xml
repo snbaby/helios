@@ -9,7 +9,7 @@
 				value="true" />
 		</commentGenerator>
 		<jdbcConnection
-			connectionURL="jdbc:oracle:thin:@192.168.2.45:1521:HELIOS"
+			connectionURL="jdbc:oracle:thin:@192.168.3.67:1521:HELIOS"
 			driverClass="oracle.jdbc.driver.OracleDriver"
 			password="admin"
 			userId="root" />
@@ -23,7 +23,7 @@
 		targetPackage="com.seadun.helios.mapper"
 			targetProject="helios/src/main/java" 
 			type="XMLMAPPER"/>
-		<table
+		<!-- <table
 			tableName="BASE_USER"
 			domainObjectName="BaseUser"
 			enableCountByExample="false"
@@ -62,6 +62,15 @@
 		<table
 			tableName="BASE_MENU_RESOURCE"
 			domainObjectName="BaseMenuResource"
+			enableCountByExample="false"
+			enableUpdateByExample="false"
+			enableDeleteByExample="false"
+			enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table> -->
+		<table
+			tableName="V_AUTH_MENU"
+			domainObjectName="VAuthMenu"
 			enableCountByExample="false"
 			enableUpdateByExample="false"
 			enableDeleteByExample="false"
