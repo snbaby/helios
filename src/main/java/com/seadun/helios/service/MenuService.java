@@ -94,7 +94,7 @@ public class MenuService {
 		auditorManageMenu.setCode("auditorManager");
 		auditorManageMenu.setCrtTime(new Date());
 		auditorManageMenu.setCrtUser("system");
-		auditorManageMenu.setName("安全设置");
+		auditorManageMenu.setName("日志审计");
 		auditorManageMenu.setParentId("-1");
 		auditorManageMenu.setPath("/helios/auditor-manage");
 		baseMenuMapper.insertSelective(auditorManageMenu);
