@@ -18,6 +18,18 @@
     from BASE_LOG
     where ID = #{id,jdbcType=VARCHAR}
   </select>
+  <select id="selectPage" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from BASE_LOG
+    where 1=1
+    <if test="code != ''">
+      and CRT_CODE = #{code,jdbcType=VARCHAR}
+    </if>
+    <if test="name != ''">
+      and CRT_NAME = #{name,jdbcType=VARCHAR}
+    </if>
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from BASE_LOG
     where ID = #{id,jdbcType=VARCHAR}
