@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seadun.helios.mapper.BaseLogMapper">
+  <resultMap id="BaseResultMap" type="com.seadun.helios.entity.BaseLog">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="MESSAGE" jdbcType="VARCHAR" property="message" />
+    <result column="CRT_USER" jdbcType="VARCHAR" property="crtUser" />
+    <result column="CRT_NAME" jdbcType="VARCHAR" property="crtName" />
+    <result column="CRT_CODE" jdbcType="VARCHAR" property="crtCode" />
+    <result column="CRT_TIME" jdbcType="TIMESTAMP" property="crtTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, MESSAGE, CRT_USER, CRT_NAME, CRT_CODE, CRT_TIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from BASE_LOG
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from BASE_LOG
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.seadun.helios.entity.BaseLog">
+    insert into BASE_LOG (ID, MESSAGE, CRT_USER, 
+      CRT_NAME, CRT_CODE, CRT_TIME
+      )
+    values (#{id,jdbcType=VARCHAR}, #{message,jdbcType=VARCHAR}, #{crtUser,jdbcType=VARCHAR}, 
+      #{crtName,jdbcType=VARCHAR}, #{crtCode,jdbcType=VARCHAR}, #{crtTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.seadun.helios.entity.BaseLog">
+    insert into BASE_LOG
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="message != null">
+        MESSAGE,
+      </if>
+      <if test="crtUser != null">
+        CRT_USER,
+      </if>
+      <if test="crtName != null">
+        CRT_NAME,
+      </if>
+      <if test="crtCode != null">
+        CRT_CODE,
+      </if>
+      <if test="crtTime != null">
+        CRT_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="message != null">
+        #{message,jdbcType=VARCHAR},
+      </if>
+      <if test="crtUser != null">
+        #{crtUser,jdbcType=VARCHAR},
+      </if>
+      <if test="crtName != null">
+        #{crtName,jdbcType=VARCHAR},
+      </if>
+      <if test="crtCode != null">
+        #{crtCode,jdbcType=VARCHAR},
+      </if>
+      <if test="crtTime != null">
+        #{crtTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.seadun.helios.entity.BaseLog">
+    update BASE_LOG
+    <set>
+      <if test="message != null">
+        MESSAGE = #{message,jdbcType=VARCHAR},
+      </if>
+      <if test="crtUser != null">
+        CRT_USER = #{crtUser,jdbcType=VARCHAR},
+      </if>
+      <if test="crtName != null">
+        CRT_NAME = #{crtName,jdbcType=VARCHAR},
+      </if>
+      <if test="crtCode != null">
+        CRT_CODE = #{crtCode,jdbcType=VARCHAR},
+      </if>
+      <if test="crtTime != null">
+        CRT_TIME = #{crtTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.seadun.helios.entity.BaseLog">
+    update BASE_LOG
+    set MESSAGE = #{message,jdbcType=VARCHAR},
+      CRT_USER = #{crtUser,jdbcType=VARCHAR},
+      CRT_NAME = #{crtName,jdbcType=VARCHAR},
+      CRT_CODE = #{crtCode,jdbcType=VARCHAR},
+      CRT_TIME = #{crtTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

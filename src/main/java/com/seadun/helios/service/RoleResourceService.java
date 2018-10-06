@@ -18,7 +18,7 @@ public class RoleResourceService {
 	private BaseRoleResourceMapper baseRoleResourceMapper;
 	
 	@Transactional
-	public void add(String roleId,List<String> users) {
+	public void add(String roleId,List<String> users,String crtUser) {
 		users.forEach(userId->{
 			baseRoleResourceMapper.delete(userId, roleId);
 			BaseRoleResource baseRoleResource = new BaseRoleResource();
@@ -26,7 +26,7 @@ public class RoleResourceService {
 			baseRoleResource.setRoleId(roleId);
 			baseRoleResource.setUserId(userId);
 			baseRoleResource.setCrtTime(new Date());
-			baseRoleResource.setCrtUser("system");
+			baseRoleResource.setCrtUser(crtUser);
 			baseRoleResourceMapper.insertSelective(baseRoleResource);
 		});
 	}

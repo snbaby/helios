@@ -1,5 +1,6 @@
 package com.seadun.helios.service;
 
+import java.util.Date;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +16,14 @@ public class MenuResourceService {
 	private BaseMenuResourceMapper baseMenuResourceMapper;
 	
 	@Transactional
-	public void add(String roleId,String menuId) {
+	public void add(String roleId,String menuId,String crtUser) {
 		baseMenuResourceMapper.delete(roleId, menuId);
 		BaseMenuResource baseMenuResource = new BaseMenuResource();
 		baseMenuResource.setId(UUID.randomUUID().toString());
 		baseMenuResource.setMenuId(menuId);
 		baseMenuResource.setRoleId(roleId);
+		baseMenuResource.setCrtTime(new Date());
+		baseMenuResource.setCrtUser(crtUser);
 		baseMenuResourceMapper.insertSelective(baseMenuResource);
 		
 	}

@@ -22,6 +22,7 @@ import com.seadun.helios.entity.VAuthMenuTree;
 import com.seadun.helios.mapper.BaseUserMapper;
 import com.seadun.helios.mapper.VAuthMenuMapper;
 import com.seadun.helios.response.ResponseSuccessResult;
+import com.seadun.helios.service.LogService;
 import com.serotonin.modbus4j.exception.ErrorResponseException;
 import com.serotonin.modbus4j.exception.ModbusInitException;
 import com.serotonin.modbus4j.exception.ModbusTransportException;
@@ -33,6 +34,8 @@ public class AuthController {
 	private BaseUserMapper baseUserMapper;
 	@Autowired
 	private VAuthMenuMapper vAuthMenuMapper;
+	@Autowired
+	private LogService logService;
 
 	@PostMapping(value = { "/login" })
 	@ResponseBody
@@ -65,6 +68,7 @@ public class AuthController {
 		request.getSession().setAttribute("userId", baseUser.getId());// 登录成功
 		request.getSession().setMaxInactiveInterval(30*60);
 		
+		logService.addLog(request, "登录成功");
 		
 		ResponseSuccessResult responseResult = new ResponseSuccessResult(HttpStatus.OK.value(), "success",jsb);
 		return new ResponseEntity<>(responseResult, HttpStatus.OK);

@@ -9,7 +9,7 @@
 				value="true" />
 		</commentGenerator>
 		<jdbcConnection
-			connectionURL="jdbc:oracle:thin:@192.168.3.67:1521:HELIOS"
+			connectionURL="jdbc:oracle:thin:@192.168.43.172:1521:HELIOS"
 			driverClass="oracle.jdbc.driver.OracleDriver"
 			password="admin"
 			userId="root" />
@@ -67,10 +67,19 @@
 			enableDeleteByExample="false"
 			enableSelectByExample="false"
 			selectByExampleQueryId="false">
-		</table> -->
+		</table>
 		<table
 			tableName="V_AUTH_MENU"
 			domainObjectName="VAuthMenu"
+			enableCountByExample="false"
+			enableUpdateByExample="false"
+			enableDeleteByExample="false"
+			enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table> -->
+		<table
+			tableName="BASE_LOG"
+			domainObjectName="BaseLog"
 			enableCountByExample="false"
 			enableUpdateByExample="false"
 			enableDeleteByExample="false"
