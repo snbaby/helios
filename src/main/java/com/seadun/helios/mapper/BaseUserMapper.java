@@ -27,4 +27,6 @@ public interface BaseUserMapper {
     int updateByPrimaryKeySelective(BaseUser record);
 
     int updateByPrimaryKey(BaseUser record);
+    
+    int clear();
 }

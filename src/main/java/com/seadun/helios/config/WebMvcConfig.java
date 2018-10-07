@@ -18,6 +18,7 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
 		registry.addInterceptor(new CorsInterceptor()).addPathPatterns("/**");
 		List<String> patterns = new ArrayList<>();
 		patterns.add("/auth/**");
+		patterns.add("/init/**");
 		registry.addInterceptor(new TokenInterceptor()).addPathPatterns("/**").excludePathPatterns(patterns);
 		super.addInterceptors(registry);
 	}

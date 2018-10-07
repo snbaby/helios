@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -48,7 +49,7 @@ public class AuthController {
 					HeliosExceptionConstants.PARAMETER_EXCEPTION_HTTP_STATUS);
 		}
 
-		BaseUser baseUser = baseUserMapper.selectUser(baseUserParam.getCode(), baseUserParam.getPassword());
+		BaseUser baseUser = baseUserMapper.selectUser(baseUserParam.getCode(), DigestUtils.md5Hex(baseUserParam.getPassword()));
 
 		if (baseUser == null) {
 			throw new HeliosException(HeliosExceptionConstants.USER_VALID_FAILD_EXCEPTION_CODE,

@@ -9,6 +9,8 @@ import com.seadun.helios.entity.BaseRole;
 
 public interface BaseRoleMapper {
     int deleteByPrimaryKey(String id);
+    
+    int clear();
 
     int insert(BaseRole record);
 

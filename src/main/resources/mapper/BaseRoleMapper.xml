@@ -47,6 +47,12 @@
     delete from BASE_ROLE
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
+  
+   
+  <delete id="clear" >
+    delete from BASE_ROLE
+  </delete>
+  
   <insert id="insert" parameterType="com.seadun.helios.entity.BaseRole">
     insert into BASE_ROLE (ID, NAME, CODE, 
       CRT_USER, CRT_TIME, UPT_USER, 

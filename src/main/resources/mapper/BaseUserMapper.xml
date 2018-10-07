@@ -54,6 +54,9 @@
     delete from BASE_USER
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
+  <delete id="clear" >
+    delete from BASE_USER
+  </delete>
   <insert id="insert" parameterType="com.seadun.helios.entity.BaseUser">
     insert into BASE_USER (ID, NAME, CODE, 
       PASSWORD, CRT_USER, CRT_TIME, 

@@ -35,7 +35,8 @@
 			property="uptTime" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		ID, ROLE_ID, USER_ID, CRT_USER, CRT_TIME, UPT_USER, UPT_TIME
+		ID, ROLE_ID, USER_ID, CRT_USER, CRT_TIME, UPT_USER,
+		UPT_TIME
 	</sql>
 
 	<resultMap
@@ -116,7 +117,8 @@
 			property="uptTime" />
 	</resultMap>
 	<sql id="Base_User_Column_List">
-		ID, NAME, CODE, PASSWORD, CRT_USER, CRT_TIME, UPT_USER, UPT_TIME
+		ID, NAME, CODE, PASSWORD, CRT_USER, CRT_TIME, UPT_USER,
+		UPT_TIME
 	</sql>
 
 	<resultMap
@@ -176,11 +178,15 @@
 			and ROLE_ID = #{roleId,jdbcType=VARCHAR}
 		</if>
 	</delete>
+	<delete id="clear">
+		delete from BASE_ROLE_RESOURCE
+	</delete>
 	<delete
 		id="deleteByPrimaryKey"
 		parameterType="java.lang.String">
 		delete from BASE_ROLE_RESOURCE
-		where ID = #{id,jdbcType=VARCHAR}
+		where ID =
+		#{id,jdbcType=VARCHAR}
 	</delete>
 	<insert
 		id="insert"
@@ -188,9 +194,11 @@
 		insert into BASE_ROLE_RESOURCE (ID, ROLE_ID, USER_ID,
 		CRT_USER, CRT_TIME, UPT_USER,
 		UPT_TIME)
-		values (#{id,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR},
+		values (#{id,jdbcType=VARCHAR},
+		#{roleId,jdbcType=VARCHAR},
 		#{userId,jdbcType=VARCHAR},
-		#{crtUser,jdbcType=VARCHAR}, #{crtTime,jdbcType=TIMESTAMP}, #{uptUser,jdbcType=VARCHAR},
+		#{crtUser,jdbcType=VARCHAR}, #{crtTime,jdbcType=TIMESTAMP},
+		#{uptUser,jdbcType=VARCHAR},
 		#{uptTime,jdbcType=TIMESTAMP})
 	</insert>
 	<insert
@@ -280,13 +288,16 @@
 		id="updateByPrimaryKey"
 		parameterType="com.seadun.helios.entity.BaseRoleResource">
 		update BASE_ROLE_RESOURCE
-		set ROLE_ID = #{roleId,jdbcType=VARCHAR},
+		set ROLE_ID =
+		#{roleId,jdbcType=VARCHAR},
 		USER_ID = #{userId,jdbcType=VARCHAR},
 		CRT_USER = #{crtUser,jdbcType=VARCHAR},
-		CRT_TIME = #{crtTime,jdbcType=TIMESTAMP},
+		CRT_TIME =
+		#{crtTime,jdbcType=TIMESTAMP},
 		UPT_USER = #{uptUser,jdbcType=VARCHAR},
 		UPT_TIME = #{uptTime,jdbcType=TIMESTAMP}
-		where ID = #{id,jdbcType=VARCHAR}
+		where ID =
+		#{id,jdbcType=VARCHAR}
 	</update>
 	<select
 		id="getBaseRole"

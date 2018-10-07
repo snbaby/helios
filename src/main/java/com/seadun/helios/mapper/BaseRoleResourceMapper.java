@@ -10,6 +10,8 @@ import com.seadun.helios.entity.BaseRoleResourceNode;
 public interface BaseRoleResourceMapper {
     int deleteByPrimaryKey(String id);
     
+    int clear();
+    
     int delete(@Param(value = "userId") String userId,@Param(value = "roleId") String roleId);
 
     int insert(BaseRoleResource record);

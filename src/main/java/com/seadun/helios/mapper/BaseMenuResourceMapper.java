@@ -8,6 +8,8 @@ import com.seadun.helios.entity.BaseMenuResource;
 
 public interface BaseMenuResourceMapper {
     int deleteByPrimaryKey(String id);
+    
+    int clear();
 
     int insert(BaseMenuResource record);
 
