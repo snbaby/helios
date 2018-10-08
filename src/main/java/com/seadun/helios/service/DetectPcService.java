@@ -52,6 +52,7 @@ public class DetectPcService {
 		detectPcRelation.setCrtTime(new Date());
 		detectPcRelation.setCrtUser(crtUser);
 		detectPcRelation.setId(UUID.randomUUID().toString());
+		detectPcRelation.setStatus("0");
 		detectPcRelation.setPcCode(pcCode);
 		detectPcRelation.setPortId(portId);
 

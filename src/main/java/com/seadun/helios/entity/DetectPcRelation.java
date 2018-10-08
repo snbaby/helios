@@ -8,7 +8,9 @@ public class DetectPcRelation {
     private String portId;
 
     private String pcCode;
-
+    
+    private String status;
+    
     private String crtUser;
 
     private Date crtTime;
@@ -40,8 +42,16 @@ public class DetectPcRelation {
     public void setPcCode(String pcCode) {
         this.pcCode = pcCode;
     }
+    
+    public String getStatus() {
+		return status;
+	}
 
-    public String getCrtUser() {
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getCrtUser() {
         return crtUser;
     }
 

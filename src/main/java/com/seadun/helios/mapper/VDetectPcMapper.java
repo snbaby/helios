@@ -11,4 +11,6 @@ public interface VDetectPcMapper {
 
 	List<VDetectPc> selectPage(RowBounds rowBounds, @Param(value = "assetCode") String assetCode,
 			@Param(value = "detectCode") String detectCode, @Param(value = "portCode") String portCode);
+	
+	List<VDetectPc> list();
 }

@@ -5,13 +5,14 @@
     <id column="ID" jdbcType="VARCHAR" property="id" />
     <result column="PORT_ID" jdbcType="VARCHAR" property="portId" />
     <result column="PC_CODE" jdbcType="VARCHAR" property="pcCode" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
     <result column="CRT_USER" jdbcType="VARCHAR" property="crtUser" />
     <result column="CRT_TIME" jdbcType="TIMESTAMP" property="crtTime" />
     <result column="UPT_USER" jdbcType="VARCHAR" property="uptUser" />
     <result column="UPT_TIME" jdbcType="TIMESTAMP" property="uptTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    ID, PORT_ID, PC_CODE, CRT_USER, CRT_TIME, UPT_USER, UPT_TIME
+    ID, PORT_ID, PC_CODE, STATUS, CRT_USER, CRT_TIME, UPT_USER, UPT_TIME
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
@@ -39,10 +40,10 @@
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.seadun.helios.entity.DetectPcRelation">
-    insert into DETECT_PC_RELATION (ID, PORT_ID, PC_CODE, 
+    insert into DETECT_PC_RELATION (ID, PORT_ID, PC_CODE, STATUS，
       CRT_USER, CRT_TIME, UPT_USER, 
       UPT_TIME)
-    values (#{id,jdbcType=VARCHAR}, #{portId,jdbcType=VARCHAR}, #{pcCode,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=VARCHAR}, #{portId,jdbcType=VARCHAR}, #{pcCode,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
       #{crtUser,jdbcType=VARCHAR}, #{crtTime,jdbcType=TIMESTAMP}, #{uptUser,jdbcType=VARCHAR}, 
       #{uptTime,jdbcType=TIMESTAMP})
   </insert>
@@ -57,6 +58,9 @@
       </if>
       <if test="pcCode != null">
         PC_CODE,
+      </if>
+      <if test="status != null">
+        STATUS,
       </if>
       <if test="crtUser != null">
         CRT_USER,
@@ -81,6 +85,9 @@
       <if test="pcCode != null">
         #{pcCode,jdbcType=VARCHAR},
       </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
       <if test="crtUser != null">
         #{crtUser,jdbcType=VARCHAR},
       </if>
@@ -104,6 +111,9 @@
       <if test="pcCode != null">
         PC_CODE = #{pcCode,jdbcType=VARCHAR},
       </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
       <if test="crtUser != null">
         CRT_USER = #{crtUser,jdbcType=VARCHAR},
       </if>
@@ -123,6 +133,7 @@
     update DETECT_PC_RELATION
     set PORT_ID = #{portId,jdbcType=VARCHAR},
       PC_CODE = #{pcCode,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
       CRT_USER = #{crtUser,jdbcType=VARCHAR},
       CRT_TIME = #{crtTime,jdbcType=TIMESTAMP},
       UPT_USER = #{uptUser,jdbcType=VARCHAR},
