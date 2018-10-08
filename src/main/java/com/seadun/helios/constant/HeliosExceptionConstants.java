@@ -19,6 +19,22 @@ public class HeliosExceptionConstants {
 	public static final String USER_EXIST_EXCEPTION_MESSAGE = "用户已存在";
 	public static final HttpStatus USER_EXIST_EXCEPTION_HTTP_STATUS = HttpStatus.FORBIDDEN;
 	
+	public static final String DETECT_EXIST_EXCEPTION_CODE = "DETECT_EXIST_EXCEPTION";
+	public static final String DETECT_EXIST_EXCEPTION_MESSAGE = "侦测器已存在";
+	public static final HttpStatus DETECT_EXIST_EXCEPTION_HTTP_STATUS = HttpStatus.FORBIDDEN;
+	
+	public static final String DETECT_PORT_CODE_EXIST_EXCEPTION_CODE = "DETECT_PORT_CODE_EXIST_EXCEPTION";
+	public static final String DETECT_PORT_CODE_EXIST_EXCEPTION_MESSAGE = "侦测器端口编码已存在";
+	public static final HttpStatus DETECT_PORT_CODE_EXIST_EXCEPTION_HTTP_STATUS = HttpStatus.FORBIDDEN;
+	
+	public static final String DETECT_PORT_PORT_EXIST_EXCEPTION_CODE = "DETECT_PORT_PORT_EXIST_EXCEPTION";
+	public static final String DETECT_PORT_PORT_EXIST_EXCEPTION_MESSAGE = "侦测器端口已存在";
+	public static final HttpStatus DETECT_PORT_PORT_EXIST_EXCEPTION_HTTP_STATUS = HttpStatus.FORBIDDEN;
+	
+	public static final String IP_EXIST_EXCEPTION_CODE = "IP_EXIST_EXCEPTION";
+	public static final String IP_EXIST_EXCEPTION_MESSAGE = "IP已存在";
+	public static final HttpStatus IP_EXIST_EXCEPTION_HTTP_STATUS = HttpStatus.FORBIDDEN;
+	
 	public static final String ROLE_EXIST_EXCEPTION_CODE = "ROLE_EXIST_EXCEPTION";
 	public static final String ROLE_EXIST_EXCEPTION_MESSAGE = "角色已存在";
 	public static final HttpStatus ROLE_EXIST_EXCEPTION_HTTP_STATUS = HttpStatus.FORBIDDEN;

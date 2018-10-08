@@ -130,12 +130,12 @@ public class InitService {
 		
 		BaseMenu deviceManageMenu = new BaseMenu();
 		deviceManageMenu.setId(UUID.randomUUID().toString());
-		deviceManageMenu.setCode("deviceManager");
+		deviceManageMenu.setCode("pcManager");
 		deviceManageMenu.setCrtTime(new Date());
 		deviceManageMenu.setCrtUser("system");
 		deviceManageMenu.setName("设备管理");
 		deviceManageMenu.setParentId(eqManageMenu.getId());
-		deviceManageMenu.setPath("/helios/eq-manage/device-manage");
+		deviceManageMenu.setPath("/helios/eq-manage/pc-manage");
 		baseMenuMapper.insertSelective(deviceManageMenu);
 		
 		BaseMenu portManageMenu = new BaseMenu();
@@ -147,6 +147,16 @@ public class InitService {
 		portManageMenu.setParentId(eqManageMenu.getId());
 		portManageMenu.setPath("/helios/eq-manage/port-manage");
 		baseMenuMapper.insertSelective(portManageMenu);
+		
+		BaseMenu detectManageMenu = new BaseMenu();
+		detectManageMenu.setId(UUID.randomUUID().toString());
+		detectManageMenu.setCode("detectManager");
+		detectManageMenu.setCrtTime(new Date());
+		detectManageMenu.setCrtUser("system");
+		detectManageMenu.setName("探测器管理");
+		detectManageMenu.setParentId(eqManageMenu.getId());
+		detectManageMenu.setPath("/helios/eq-manage/detect-manage");
+		baseMenuMapper.insertSelective(detectManageMenu);
 		
 		baseRoleMapper.clear();
 		

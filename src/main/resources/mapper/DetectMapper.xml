@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seadun.helios.mapper.DetectMapper">
+  <resultMap id="BaseResultMap" type="com.seadun.helios.entity.Detect">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="CODE" jdbcType="VARCHAR" property="code" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="IP" jdbcType="VARCHAR" property="ip" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="CRT_USER" jdbcType="VARCHAR" property="crtUser" />
+    <result column="CRT_TIME" jdbcType="TIMESTAMP" property="crtTime" />
+    <result column="UPT_USER" jdbcType="VARCHAR" property="uptUser" />
+    <result column="UPT_TIME" jdbcType="TIMESTAMP" property="uptTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, CODE, NAME, IP, STATUS, CRT_USER, CRT_TIME, UPT_USER, UPT_TIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from DETECT
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByCode" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from DETECT
+    where CODE = #{code,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByIp" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from DETECT
+    where IP = #{ip,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from DETECT
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <select id="list" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from DETECT
+  </select>
+  <select id="selectPage" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from DETECT
+    where 1=1
+    <if test="code != ''">
+      and CODE = #{code,jdbcType=VARCHAR}
+    </if>
+    <if test="name != ''">
+      and NAME = #{name,jdbcType=VARCHAR}
+    </if>
+    <if test="ip != ''">
+      and IP = #{ip,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <insert id="insert" parameterType="com.seadun.helios.entity.Detect">
+    insert into DETECT (ID, CODE, NAME, 
+      IP, STATUS, CRT_USER, 
+      CRT_TIME, UPT_USER, UPT_TIME
+      )
+    values (#{id,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{ip,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{crtUser,jdbcType=VARCHAR}, 
+      #{crtTime,jdbcType=TIMESTAMP}, #{uptUser,jdbcType=VARCHAR}, #{uptTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.seadun.helios.entity.Detect">
+    insert into DETECT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="code != null">
+        CODE,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="ip != null">
+        IP,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="crtUser != null">
+        CRT_USER,
+      </if>
+      <if test="crtTime != null">
+        CRT_TIME,
+      </if>
+      <if test="uptUser != null">
+        UPT_USER,
+      </if>
+      <if test="uptTime != null">
+        UPT_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="crtUser != null">
+        #{crtUser,jdbcType=VARCHAR},
+      </if>
+      <if test="crtTime != null">
+        #{crtTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uptUser != null">
+        #{uptUser,jdbcType=VARCHAR},
+      </if>
+      <if test="uptTime != null">
+        #{uptTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.seadun.helios.entity.Detect">
+    update DETECT
+    <set>
+      <if test="code != null">
+        CODE = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null">
+        IP = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="crtUser != null">
+        CRT_USER = #{crtUser,jdbcType=VARCHAR},
+      </if>
+      <if test="crtTime != null">
+        CRT_TIME = #{crtTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uptUser != null">
+        UPT_USER = #{uptUser,jdbcType=VARCHAR},
+      </if>
+      <if test="uptTime != null">
+        UPT_TIME = #{uptTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.seadun.helios.entity.Detect">
+    update DETECT
+    set CODE = #{code,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      IP = #{ip,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      CRT_USER = #{crtUser,jdbcType=VARCHAR},
+      CRT_TIME = #{crtTime,jdbcType=TIMESTAMP},
+      UPT_USER = #{uptUser,jdbcType=VARCHAR},
+      UPT_TIME = #{uptTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

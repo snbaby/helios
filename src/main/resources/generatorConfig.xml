@@ -76,10 +76,59 @@
 			enableDeleteByExample="false"
 			enableSelectByExample="false"
 			selectByExampleQueryId="false">
-		</table> -->
+		</table> 
 		<table
 			tableName="BASE_LOG"
 			domainObjectName="BaseLog"
+			enableCountByExample="false"
+			enableUpdateByExample="false"
+			enableDeleteByExample="false"
+			enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		<table
+			tableName="ALARM"
+			domainObjectName="Alarm"
+			enableCountByExample="false"
+			enableUpdateByExample="false"
+			enableDeleteByExample="false"
+			enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		-->
+		
+		
+		<table
+			tableName="DETECT"
+			domainObjectName="Detect"
+			enableCountByExample="false"
+			enableUpdateByExample="false"
+			enableDeleteByExample="false"
+			enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		<table
+			tableName="DETECT_PORT"
+			domainObjectName="DetectPort"
+			enableCountByExample="false"
+			enableUpdateByExample="false"
+			enableDeleteByExample="false"
+			enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		<table
+			tableName="DETECT_PC_RELATION"
+			domainObjectName="DetectPcRelation"
+			enableCountByExample="false"
+			enableUpdateByExample="false"
+			enableDeleteByExample="false"
+			enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		
+		<table
+			tableName="PC"
+			domainObjectName="Pc"
 			enableCountByExample="false"
 			enableUpdateByExample="false"
 			enableDeleteByExample="false"

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seadun.helios.mapper.DetectPcRelationMapper">
+  <resultMap id="BaseResultMap" type="com.seadun.helios.entity.DetectPcRelation">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="PORT_ID" jdbcType="VARCHAR" property="portId" />
+    <result column="PC_CODE" jdbcType="VARCHAR" property="pcCode" />
+    <result column="CRT_USER" jdbcType="VARCHAR" property="crtUser" />
+    <result column="CRT_TIME" jdbcType="TIMESTAMP" property="crtTime" />
+    <result column="UPT_USER" jdbcType="VARCHAR" property="uptUser" />
+    <result column="UPT_TIME" jdbcType="TIMESTAMP" property="uptTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, PORT_ID, PC_CODE, CRT_USER, CRT_TIME, UPT_USER, UPT_TIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from DETECT_PC_RELATION
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from DETECT_PC_RELATION
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.seadun.helios.entity.DetectPcRelation">
+    insert into DETECT_PC_RELATION (ID, PORT_ID, PC_CODE, 
+      CRT_USER, CRT_TIME, UPT_USER, 
+      UPT_TIME)
+    values (#{id,jdbcType=VARCHAR}, #{portId,jdbcType=VARCHAR}, #{pcCode,jdbcType=VARCHAR}, 
+      #{crtUser,jdbcType=VARCHAR}, #{crtTime,jdbcType=TIMESTAMP}, #{uptUser,jdbcType=VARCHAR}, 
+      #{uptTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.seadun.helios.entity.DetectPcRelation">
+    insert into DETECT_PC_RELATION
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="portId != null">
+        PORT_ID,
+      </if>
+      <if test="pcCode != null">
+        PC_CODE,
+      </if>
+      <if test="crtUser != null">
+        CRT_USER,
+      </if>
+      <if test="crtTime != null">
+        CRT_TIME,
+      </if>
+      <if test="uptUser != null">
+        UPT_USER,
+      </if>
+      <if test="uptTime != null">
+        UPT_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="portId != null">
+        #{portId,jdbcType=VARCHAR},
+      </if>
+      <if test="pcCode != null">
+        #{pcCode,jdbcType=VARCHAR},
+      </if>
+      <if test="crtUser != null">
+        #{crtUser,jdbcType=VARCHAR},
+      </if>
+      <if test="crtTime != null">
+        #{crtTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uptUser != null">
+        #{uptUser,jdbcType=VARCHAR},
+      </if>
+      <if test="uptTime != null">
+        #{uptTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.seadun.helios.entity.DetectPcRelation">
+    update DETECT_PC_RELATION
+    <set>
+      <if test="portId != null">
+        PORT_ID = #{portId,jdbcType=VARCHAR},
+      </if>
+      <if test="pcCode != null">
+        PC_CODE = #{pcCode,jdbcType=VARCHAR},
+      </if>
+      <if test="crtUser != null">
+        CRT_USER = #{crtUser,jdbcType=VARCHAR},
+      </if>
+      <if test="crtTime != null">
+        CRT_TIME = #{crtTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uptUser != null">
+        UPT_USER = #{uptUser,jdbcType=VARCHAR},
+      </if>
+      <if test="uptTime != null">
+        UPT_TIME = #{uptTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.seadun.helios.entity.DetectPcRelation">
+    update DETECT_PC_RELATION
+    set PORT_ID = #{portId,jdbcType=VARCHAR},
+      PC_CODE = #{pcCode,jdbcType=VARCHAR},
+      CRT_USER = #{crtUser,jdbcType=VARCHAR},
+      CRT_TIME = #{crtTime,jdbcType=TIMESTAMP},
+      UPT_USER = #{uptUser,jdbcType=VARCHAR},
+      UPT_TIME = #{uptTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
