@@ -23,6 +23,14 @@ public class HeliosExceptionConstants {
 	public static final String DETECT_EXIST_EXCEPTION_MESSAGE = "侦测器已存在";
 	public static final HttpStatus DETECT_EXIST_EXCEPTION_HTTP_STATUS = HttpStatus.FORBIDDEN;
 	
+	public static final String RELATION_PORT_EXIST_EXCEPTION_CODE = "RELATION_PORT_EXIST_EXCEPTION";
+	public static final String RELATION_PORT_EXIST_EXCEPTION_MESSAGE = "端口已被关联，不可重复关联";
+	public static final HttpStatus RELATION_PORT_EXIST_EXCEPTION_HTTP_STATUS = HttpStatus.FORBIDDEN;
+	
+	public static final String RELATION_PC_EXIST_EXCEPTION_CODE = "RELATION_PC_EXIST_EXCEPTION";
+	public static final String RELATION_PC_EXIST_EXCEPTION_MESSAGE = "主机已被关联，不可重复关联";
+	public static final HttpStatus RELATION_PC_EXIST_EXCEPTION_HTTP_STATUS = HttpStatus.FORBIDDEN;
+	
 	public static final String DETECT_PORT_CODE_EXIST_EXCEPTION_CODE = "DETECT_PORT_CODE_EXIST_EXCEPTION";
 	public static final String DETECT_PORT_CODE_EXIST_EXCEPTION_MESSAGE = "侦测器端口编码已存在";
 	public static final HttpStatus DETECT_PORT_CODE_EXIST_EXCEPTION_HTTP_STATUS = HttpStatus.FORBIDDEN;

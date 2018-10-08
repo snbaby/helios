@@ -1,5 +1,7 @@
 package com.seadun.helios.mapper;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.seadun.helios.entity.DetectPcRelation;
 
 public interface DetectPcRelationMapper {
@@ -14,4 +16,8 @@ public interface DetectPcRelationMapper {
     int updateByPrimaryKeySelective(DetectPcRelation record);
 
     int updateByPrimaryKey(DetectPcRelation record);
+    
+    DetectPcRelation selectByPortId(@Param(value = "portId") String portId);
+    
+    DetectPcRelation selectByPcCode(@Param(value = "pcCode") String pcCode);
 }

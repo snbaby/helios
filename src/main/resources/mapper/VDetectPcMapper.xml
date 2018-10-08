@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seadun.helios.mapper.VDetectPcMapper">
+  <resultMap id="BaseResultMap" type="com.seadun.helios.entity.VDetectPc">
+  	<result column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="DETECT_NAME" jdbcType="VARCHAR" property="detectName" />
+    <result column="DETECT_CODE" jdbcType="VARCHAR" property="detectCode" />
+    <result column="DETECT_ID" jdbcType="VARCHAR" property="detectId" />
+    <result column="PORT_NAME" jdbcType="VARCHAR" property="portName" />
+    <result column="PORT_CODE" jdbcType="VARCHAR" property="portCode" />
+    <result column="PORT_ID" jdbcType="VARCHAR" property="portId" />
+    <result column="ASSET_CODE" jdbcType="VARCHAR" property="assetCode" />
+    <result column="ASSET_NAME" jdbcType="VARCHAR" property="assetName" />
+    <result column="ASSET_DUTY_CODE" jdbcType="VARCHAR" property="assetDutyCode" />
+    <result column="ASSET_DUTY_NAME" jdbcType="VARCHAR" property="assetDutyName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+	ID,
+	DETECT_NAME, DETECT_CODE, DETECT_ID,
+	PORT_NAME, PORT_CODE, PORT_ID,
+	ASSET_CODE, ASSET_NAME, ASSET_DUTY_CODE,
+	ASSET_DUTY_NAME
+</sql>
+  <select id="selectPage" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from V_DETECT_PC
+    where 1=1
+    <if test="assetCode != ''">
+      and ASSET_CODE = #{assetCode,jdbcType=VARCHAR}
+    </if>
+    <if test="detectCode != ''">
+      and DETECT_CODE = #{detectCode,jdbcType=VARCHAR}
+    </if>
+    <if test="portCode != ''">
+      and PORT_CODE = #{portCode,jdbcType=VARCHAR}
+    </if>
+  </select>
+</mapper>

@@ -25,4 +25,9 @@ public class PcService {
 		return pageInfo;
 	}
 	
+	@Transactional
+	public List<Pc> list() {
+		return pcMapper.list();
+	}
+	
 }

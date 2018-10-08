@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.github.pagehelper.PageInfo;
 import com.seadun.helios.constant.HeliosExceptionConstants;
-import com.seadun.helios.entity.Detect;
 import com.seadun.helios.entity.DetectPort;
 import com.seadun.helios.entity.HeliosException;
 import com.seadun.helios.mapper.DetectPortMapper;

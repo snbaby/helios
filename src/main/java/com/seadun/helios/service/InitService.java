@@ -138,14 +138,24 @@ public class InitService {
 		deviceManageMenu.setPath("/helios/eq-manage/pc-manage");
 		baseMenuMapper.insertSelective(deviceManageMenu);
 		
+		BaseMenu detectMenu = new BaseMenu();
+		detectMenu.setId(UUID.randomUUID().toString());
+		detectMenu.setCode("detect");
+		detectMenu.setCrtTime(new Date());
+		detectMenu.setCrtUser("system");
+		detectMenu.setName("侦测器");
+		detectMenu.setParentId(eqManageMenu.getId());
+		detectMenu.setPath("/helios/eq-manage/detect");
+		baseMenuMapper.insertSelective(detectMenu);
+		
 		BaseMenu portManageMenu = new BaseMenu();
 		portManageMenu.setId(UUID.randomUUID().toString());
 		portManageMenu.setCode("portManager");
 		portManageMenu.setCrtTime(new Date());
 		portManageMenu.setCrtUser("system");
 		portManageMenu.setName("端口管理");
-		portManageMenu.setParentId(eqManageMenu.getId());
-		portManageMenu.setPath("/helios/eq-manage/port-manage");
+		portManageMenu.setParentId(detectMenu.getId());
+		portManageMenu.setPath("/helios/eq-manage/detect/port-manage");
 		baseMenuMapper.insertSelective(portManageMenu);
 		
 		BaseMenu detectManageMenu = new BaseMenu();
@@ -154,9 +164,19 @@ public class InitService {
 		detectManageMenu.setCrtTime(new Date());
 		detectManageMenu.setCrtUser("system");
 		detectManageMenu.setName("探测器管理");
-		detectManageMenu.setParentId(eqManageMenu.getId());
-		detectManageMenu.setPath("/helios/eq-manage/detect-manage");
+		detectManageMenu.setParentId(detectMenu.getId());
+		detectManageMenu.setPath("/helios/eq-manage/detect/detect-manage");
 		baseMenuMapper.insertSelective(detectManageMenu);
+		
+		BaseMenu eqRelationMenu = new BaseMenu();
+		eqRelationMenu.setId(UUID.randomUUID().toString());
+		eqRelationMenu.setCode("eqRelation");
+		eqRelationMenu.setCrtTime(new Date());
+		eqRelationMenu.setCrtUser("system");
+		eqRelationMenu.setName("设备关联");
+		eqRelationMenu.setParentId(eqManageMenu.getId());
+		eqRelationMenu.setPath("/helios/eq-manage/eq-relation");
+		baseMenuMapper.insertSelective(eqRelationMenu);
 		
 		baseRoleMapper.clear();
 		

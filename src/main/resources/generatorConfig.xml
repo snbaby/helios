@@ -94,10 +94,7 @@
 			enableDeleteByExample="false"
 			enableSelectByExample="false"
 			selectByExampleQueryId="false">
-		</table>
-		-->
-		
-		
+		</table>	
 		<table
 			tableName="DETECT"
 			domainObjectName="Detect"
@@ -129,6 +126,16 @@
 		<table
 			tableName="PC"
 			domainObjectName="Pc"
+			enableCountByExample="false"
+			enableUpdateByExample="false"
+			enableDeleteByExample="false"
+			enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		-->
+		<table
+			tableName="V_DETECT_PC"
+			domainObjectName="VDetectPc"
 			enableCountByExample="false"
 			enableUpdateByExample="false"
 			enableDeleteByExample="false"

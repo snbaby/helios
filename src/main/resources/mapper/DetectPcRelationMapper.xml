@@ -19,6 +19,21 @@
     from DETECT_PC_RELATION
     where ID = #{id,jdbcType=VARCHAR}
   </select>
+  
+  <select id="selectByPortId" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from DETECT_PC_RELATION
+    where PORT_ID = #{portId,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectByPcCode" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from DETECT_PC_RELATION
+    where PC_CODE = #{pcCode,jdbcType=VARCHAR}
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from DETECT_PC_RELATION
     where ID = #{id,jdbcType=VARCHAR}
