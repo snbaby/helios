@@ -34,6 +34,9 @@
     delete from PC
     where ASSET_CODE = #{assetCode,jdbcType=VARCHAR}
   </delete>
+  <delete id="clear">
+    delete from PC
+  </delete>
   <select id="selectPage" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -41,9 +44,6 @@
     where 1=1
     <if test="assetCode != ''">
       and ASSET_CODE = #{assetCode,jdbcType=VARCHAR}
-    </if>
-    <if test="assetType != ''">
-      and ASSET_TYPE = #{assetType,jdbcType=VARCHAR}
     </if>
   </select>
   <insert id="insert" parameterType="com.seadun.helios.entity.Pc">

@@ -65,7 +65,7 @@
 		ID, STATUS,
 		DETECT_NAME, DETECT_CODE, DETECT_ID, DETECT_IP,
 		PORT_NAME,
-		PORT_CODE, PORT_ID, PORT_PORT
+		PORT_CODE, PORT_ID, PORT_PORT，
 		ASSET_CODE, ASSET_NAME, ASSET_DUTY_CODE,
 		ASSET_DUTY_NAME
 	</sql>
@@ -84,6 +84,17 @@
 		</if>
 		<if test="portCode != ''">
 			and PORT_CODE = #{portCode,jdbcType=VARCHAR}
+		</if>
+	</select>
+	<select
+		id="selectByStatus"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from V_DETECT_PC
+		where 1=1
+		<if test="status != ''">
+			and STATUS = #{status,jdbcType=VARCHAR}
 		</if>
 	</select>
 	<select

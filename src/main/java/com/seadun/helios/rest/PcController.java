@@ -1,6 +1,5 @@
 package com.seadun.helios.rest;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,10 +27,9 @@ public class PcController {
 		int pageNum = jsb.getIntValue("pageNum");
 		int pageSize = jsb.getIntValue("pageSize");
 		String assetCode = jsb.getString("assetCode");
-		String assetType = jsb.getString("assetType");
 
 		ResponseSuccessResult responseResult = new ResponseSuccessResult(HttpStatus.OK.value(), "success",
-				pcService.page(pageNum, pageSize, assetCode, assetType));
+				pcService.page(pageNum, pageSize, assetCode));
 		return new ResponseEntity<>(responseResult, HttpStatus.OK);
 	}
 	

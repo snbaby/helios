@@ -13,4 +13,6 @@ public interface VDetectPcMapper {
 			@Param(value = "detectCode") String detectCode, @Param(value = "portCode") String portCode);
 	
 	List<VDetectPc> list();
+	
+	List<VDetectPc> selectByStatus(@Param(value = "status") String status);
 }

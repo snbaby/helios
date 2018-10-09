@@ -17,10 +17,10 @@ public class PcService {
 	private PcMapper pcMapper;
 	
 	@Transactional
-	public PageInfo<Pc> page(int pageNum,int pageSize,String assetCode,String assetType) {
+	public PageInfo<Pc> page(int pageNum,int pageSize,String assetCode) {
 		RowBounds rowBounds = new RowBounds(pageNum, pageSize);
 		
-		List<Pc> pcList = pcMapper.selectPage(rowBounds,assetCode,assetCode);
+		List<Pc> pcList = pcMapper.selectPage(rowBounds,assetCode);
 		PageInfo<Pc> pageInfo = new PageInfo<Pc>(pcList);// 封装分页信息，便于前端展示
 		return pageInfo;
 	}

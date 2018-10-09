@@ -20,8 +20,9 @@ public interface PcMapper {
 
     int updateByPrimaryKey(Pc record);
     
-	List<Pc> selectPage(RowBounds rowBounds, @Param(value = "assetCode") String assetCode,
-			@Param(value = "assetType") String assetType);
+	List<Pc> selectPage(RowBounds rowBounds, @Param(value = "assetCode") String assetCode);
 	
 	List<Pc> list();
+	
+	int clear();
 }

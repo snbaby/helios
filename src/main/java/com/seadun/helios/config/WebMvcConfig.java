@@ -19,6 +19,7 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
 		List<String> patterns = new ArrayList<>();
 		patterns.add("/auth/**");
 		patterns.add("/init/**");
+		patterns.add("/iems/**");
 		registry.addInterceptor(new TokenInterceptor()).addPathPatterns("/**").excludePathPatterns(patterns);
 		super.addInterceptors(registry);
 	}
