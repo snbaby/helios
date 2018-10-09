@@ -178,6 +178,16 @@ public class InitService {
 		eqRelationMenu.setPath("/helios/eq-manage/eq-relation");
 		baseMenuMapper.insertSelective(eqRelationMenu);
 		
+		BaseMenu alarmMenu = new BaseMenu();
+		alarmMenu.setId(UUID.randomUUID().toString());
+		alarmMenu.setCode("alarm");
+		alarmMenu.setCrtTime(new Date());
+		alarmMenu.setCrtUser("system");
+		alarmMenu.setName("报警管理");
+		alarmMenu.setParentId("-1");
+		alarmMenu.setPath("/helios/alarm");
+		baseMenuMapper.insertSelective(alarmMenu);
+		
 		baseRoleMapper.clear();
 		
 		BaseRole administratorRole = new BaseRole();

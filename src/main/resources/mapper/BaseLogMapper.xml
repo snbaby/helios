@@ -29,6 +29,7 @@
     <if test="name != ''">
       and CRT_NAME = #{name,jdbcType=VARCHAR}
     </if>
+     order by CRT_TIME desc
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from BASE_LOG

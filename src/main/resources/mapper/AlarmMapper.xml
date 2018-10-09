@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seadun.helios.mapper.AlarmMapper">
+  <resultMap id="BaseResultMap" type="com.seadun.helios.entity.Alarm">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="PORT_ID" jdbcType="VARCHAR" property="portId" />
+    <result column="PC_CODE" jdbcType="VARCHAR" property="pcCode" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="MESSAGE" jdbcType="VARCHAR" property="message" />
+    <result column="CRT_TIME" jdbcType="TIMESTAMP" property="crtTime" />
+    <result column="CRT_USER" jdbcType="VARCHAR" property="crtUser" />
+    <result column="UPT_TIME" jdbcType="TIMESTAMP" property="uptTime" />
+    <result column="UPT_USER" jdbcType="VARCHAR" property="uptUser" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, PORT_ID, PC_CODE, STATUS, MESSAGE, CRT_TIME, CRT_USER, UPT_TIME, UPT_USER
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ALARM
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from ALARM
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.seadun.helios.entity.Alarm">
+    insert into ALARM (ID, PORT_ID, PC_CODE, 
+      STATUS, MESSAGE, CRT_TIME, 
+      CRT_USER, UPT_TIME, UPT_USER
+      )
+    values (#{id,jdbcType=VARCHAR}, #{portId,jdbcType=VARCHAR}, #{pcCode,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{message,jdbcType=VARCHAR}, #{crtTime,jdbcType=TIMESTAMP}, 
+      #{crtUser,jdbcType=VARCHAR}, #{uptTime,jdbcType=TIMESTAMP}, #{uptUser,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.seadun.helios.entity.Alarm">
+    insert into ALARM
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="portId != null">
+        PORT_ID,
+      </if>
+      <if test="pcCode != null">
+        PC_CODE,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="message != null">
+        MESSAGE,
+      </if>
+      <if test="crtTime != null">
+        CRT_TIME,
+      </if>
+      <if test="crtUser != null">
+        CRT_USER,
+      </if>
+      <if test="uptTime != null">
+        UPT_TIME,
+      </if>
+      <if test="uptUser != null">
+        UPT_USER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="portId != null">
+        #{portId,jdbcType=VARCHAR},
+      </if>
+      <if test="pcCode != null">
+        #{pcCode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="message != null">
+        #{message,jdbcType=VARCHAR},
+      </if>
+      <if test="crtTime != null">
+        #{crtTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="crtUser != null">
+        #{crtUser,jdbcType=VARCHAR},
+      </if>
+      <if test="uptTime != null">
+        #{uptTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uptUser != null">
+        #{uptUser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.seadun.helios.entity.Alarm">
+    update ALARM
+    <set>
+      <if test="portId != null">
+        PORT_ID = #{portId,jdbcType=VARCHAR},
+      </if>
+      <if test="pcCode != null">
+        PC_CODE = #{pcCode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="message != null">
+        MESSAGE = #{message,jdbcType=VARCHAR},
+      </if>
+      <if test="crtTime != null">
+        CRT_TIME = #{crtTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="crtUser != null">
+        CRT_USER = #{crtUser,jdbcType=VARCHAR},
+      </if>
+      <if test="uptTime != null">
+        UPT_TIME = #{uptTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uptUser != null">
+        UPT_USER = #{uptUser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.seadun.helios.entity.Alarm">
+    update ALARM
+    set PORT_ID = #{portId,jdbcType=VARCHAR},
+      PC_CODE = #{pcCode,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      MESSAGE = #{message,jdbcType=VARCHAR},
+      CRT_TIME = #{crtTime,jdbcType=TIMESTAMP},
+      CRT_USER = #{crtUser,jdbcType=VARCHAR},
+      UPT_TIME = #{uptTime,jdbcType=TIMESTAMP},
+      UPT_USER = #{uptUser,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

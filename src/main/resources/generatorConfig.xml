@@ -132,10 +132,28 @@
 			enableSelectByExample="false"
 			selectByExampleQueryId="false">
 		</table>
-		-->
 		<table
 			tableName="V_DETECT_PC"
 			domainObjectName="VDetectPc"
+			enableCountByExample="false"
+			enableUpdateByExample="false"
+			enableDeleteByExample="false"
+			enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		-->
+		<table
+			tableName="V_ALARM"
+			domainObjectName="VAlarm"
+			enableCountByExample="false"
+			enableUpdateByExample="false"
+			enableDeleteByExample="false"
+			enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		<table
+			tableName="ALARM"
+			domainObjectName="Alarm"
 			enableCountByExample="false"
 			enableUpdateByExample="false"
 			enableDeleteByExample="false"
