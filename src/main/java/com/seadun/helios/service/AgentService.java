@@ -44,9 +44,6 @@ public class AgentService {
 	@Transactional
 	public void detect() {
 		List<VDetectPc> normal_vDetectPcs = vDetectPcMapper.selectByStatus(HeliosConstants.RELATION_NORMAL);// 检测正常的链接
-		List<VDetectPc> reback_vDetectPcs = vDetectPcMapper.selectByStatus(HeliosConstants.RELATION_REBACK);// 检测返回的链接
-		System.out.println("-----normal_vDetectPcs:"+normal_vDetectPcs.size());
-		System.out.println("-----reback_vDetectPcs:"+reback_vDetectPcs.size());
 		normal_vDetectPcs.forEach(normal_vDetectPc -> {
 			IpParameters params = new IpParameters();
 			params.setHost(normal_vDetectPc.getDetectIp());
@@ -55,14 +52,16 @@ public class AgentService {
 
 			ModbusMaster master = new ModbusFactory().createTcpMaster(params, true);// TCP
 			master.setTimeout(1000);
-			Number num = 0;//探测标志70000正常
+			Short num = 0;//探测标志1正常
 			try {
 				master.init();
-				BaseLocator<Number> loc = BaseLocator.holdingRegister(1, 0, DataType.FOUR_BYTE_BCD);
-				num = master.getValue(loc);
+				BaseLocator<Number> loc = BaseLocator.holdingRegister(1, 0, DataType.TWO_BYTE_BCD);
+				num = master.getValue(loc).shortValue();
+				System.out.println("num:"+num+";id="+normal_vDetectPc.getAssetCode());
 			} catch (ModbusInitException | ModbusTransportException | ErrorResponseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				System.out.println("num:"+num+";id="+normal_vDetectPc.getAssetCode());
 				BaseLog baseLog = new BaseLog();
 				baseLog.setId(UUID.randomUUID().toString());
 				baseLog.setCrtCode("exception");
@@ -71,10 +70,12 @@ public class AgentService {
 				baseLog.setCrtUser("exception");
 				baseLog.setMessage(e.getMessage());
 				baseLogMapper.insertSelective(baseLog);
+			} finally {
+				master.destroy();
 			}
 			DetectPcRelation detectPcRelation = detectPcRelationMapper.selectByPrimaryKey(normal_vDetectPc.getId());
 			Pc pc = pcMapper.selectByPrimaryKey(normal_vDetectPc.getAssetCode());
-			if(num != HeliosConstants.DETECT_NORM) {
+			if(!num.equals(HeliosConstants.DETECT_NORM)) {
 				detectPcRelation.setStatus(HeliosConstants.RELATION_ABNORMAL);
 				detectPcRelation.setUptTime(new Date());
 				detectPcRelation.setUptUser("system");
@@ -95,47 +96,6 @@ public class AgentService {
 				detectPcRelationMapper.updateByPrimaryKeySelective(detectPcRelation);
 			}
 		});
-		
-		reback_vDetectPcs.forEach(reback_vDetectPc -> {
-			IpParameters params = new IpParameters();
-			params.setHost(reback_vDetectPc.getDetectIp());
-			params.setPort(reback_vDetectPc.getPortPort());
-			params.setEncapsulated(true);
-
-			ModbusMaster master = new ModbusFactory().createTcpMaster(params, true);// TCP
-			master.setTimeout(1000);
-			Number num = 0;//探测标志70000正常
-			try {
-				master.init();
-				BaseLocator<Number> loc = BaseLocator.holdingRegister(1, 0, DataType.FOUR_BYTE_BCD);
-				num = master.getValue(loc);
-			} catch (ModbusInitException | ModbusTransportException | ErrorResponseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				BaseLog baseLog = new BaseLog();
-				baseLog.setId(UUID.randomUUID().toString());
-				baseLog.setCrtCode("exception");
-				baseLog.setCrtName("exception");
-				baseLog.setCrtTime(new Date());
-				baseLog.setCrtUser("exception");
-				baseLog.setMessage(e.getMessage());
-				baseLogMapper.insertSelective(baseLog);
-			}
-			DetectPcRelation detectPcRelation = detectPcRelationMapper.selectByPrimaryKey(reback_vDetectPc.getId());
-			Pc pc = pcMapper.selectByPrimaryKey(reback_vDetectPc.getAssetCode());
-			if(num != HeliosConstants.DETECT_NORM) {
-				detectPcRelation.setStatus(HeliosConstants.RELATION_ABNORMAL);
-				detectPcRelation.setUptTime(new Date());
-				detectPcRelation.setUptUser("system");
-				detectPcRelationMapper.updateByPrimaryKeySelective(detectPcRelation);
-			}else {
-				detectPcRelation.setStatus(HeliosConstants.RELATION_NORMAL);
-				detectPcRelation.setUptTime(new Date());
-				detectPcRelation.setUptUser("system");
-				detectPcRelationMapper.updateByPrimaryKeySelective(detectPcRelation);
-			}
-		});
-
 	}
 
 }
