@@ -1,5 +1,7 @@
 package com.seadun.helios.entity;
 
+import java.util.Date;
+
 public class VAlarm {
     private String detectId;
 
@@ -38,6 +40,14 @@ public class VAlarm {
     private String alarmStatus;
 
     private String alarmMessage;
+
+    private Date crtTime;
+
+    private String crtUser;
+
+    private String uptUser;
+
+    private Date uptTime;
 
     public String getDetectId() {
         return detectId;
@@ -189,5 +199,37 @@ public class VAlarm {
 
     public void setAlarmMessage(String alarmMessage) {
         this.alarmMessage = alarmMessage;
+    }
+
+    public Date getCrtTime() {
+        return crtTime;
+    }
+
+    public void setCrtTime(Date crtTime) {
+        this.crtTime = crtTime;
+    }
+
+    public String getCrtUser() {
+        return crtUser;
+    }
+
+    public void setCrtUser(String crtUser) {
+        this.crtUser = crtUser;
+    }
+
+    public String getUptUser() {
+        return uptUser;
+    }
+
+    public void setUptUser(String uptUser) {
+        this.uptUser = uptUser;
+    }
+
+    public Date getUptTime() {
+        return uptTime;
+    }
+
+    public void setUptTime(Date uptTime) {
+        this.uptTime = uptTime;
     }
 }

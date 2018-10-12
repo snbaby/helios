@@ -20,4 +20,6 @@ public interface DetectPcRelationMapper {
     DetectPcRelation selectByPortId(@Param(value = "portId") String portId);
     
     DetectPcRelation selectByPcCode(@Param(value = "pcCode") String pcCode);
+    
+    int deleteByPortId(@Param(value = "portId") String portId);
 }

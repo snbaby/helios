@@ -13,12 +13,18 @@ import com.github.pagehelper.PageInfo;
 import com.seadun.helios.constant.HeliosExceptionConstants;
 import com.seadun.helios.entity.DetectPort;
 import com.seadun.helios.entity.HeliosException;
+import com.seadun.helios.mapper.AlarmMapper;
+import com.seadun.helios.mapper.DetectPcRelationMapper;
 import com.seadun.helios.mapper.DetectPortMapper;
 
 @Service
 public class PortService {
 	@Autowired
 	private DetectPortMapper detectPortMapper;
+	@Autowired
+	private DetectPcRelationMapper detectPcRelationMapper;
+	@Autowired
+	private AlarmMapper alarmMapper;
 	
 	@Transactional
 	public PageInfo<DetectPort> page(int pageNum,int pageSize,String code,String name,String detectId) {
@@ -59,6 +65,10 @@ public class PortService {
 	
 	@Transactional
 	public void deletePort(String id) {
+		detectPortMapper.deleteByPrimaryKey(id);
+		
+		detectPcRelationMapper.deleteByPortId(id);
+		alarmMapper.deleteByPortId(id);
 		detectPortMapper.deleteByPrimaryKey(id);
 	}
 	

@@ -1,5 +1,7 @@
 package com.seadun.helios.mapper;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.seadun.helios.entity.Alarm;
 
 public interface AlarmMapper {
@@ -14,4 +16,6 @@ public interface AlarmMapper {
     int updateByPrimaryKeySelective(Alarm record);
 
     int updateByPrimaryKey(Alarm record);
+    
+    int deleteByPortId(@Param(value = "portId") String portId);
 }

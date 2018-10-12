@@ -1,6 +1,6 @@
 logging:
   level:
-    root: DEBUG
+    root: info
   path: /var/log/helios
 server:
   port: 7000
@@ -8,7 +8,7 @@ spring:
   datasource:
     driverClassName: oracle.jdbc.driver.OracleDriver
     password: admin
-    url: jdbc:oracle:thin:@192.168.43.172:1521:HELIOS
+    url: jdbc:oracle:thin:@192.168.2.45:1521:HELIOS
     username: root
 mybatis:
   mapper-locations: classpath:mapper/*.xml

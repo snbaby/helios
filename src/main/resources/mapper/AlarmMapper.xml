@@ -25,6 +25,10 @@
     delete from ALARM
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
+  <delete id="deleteByPortId" parameterType="java.lang.String">
+    delete from ALARM
+    where PORT_ID = #{portId,jdbcType=VARCHAR}
+  </delete>
   <insert id="insert" parameterType="com.seadun.helios.entity.Alarm">
     insert into ALARM (ID, PORT_ID, PC_CODE, 
       STATUS, MESSAGE, CRT_TIME, 

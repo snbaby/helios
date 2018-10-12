@@ -9,10 +9,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.seadun.helios.constant.HeliosConstants;
+import com.seadun.helios.entity.Alarm;
 import com.seadun.helios.entity.BaseLog;
 import com.seadun.helios.entity.DetectPcRelation;
 import com.seadun.helios.entity.Pc;
 import com.seadun.helios.entity.VDetectPc;
+import com.seadun.helios.mapper.AlarmMapper;
 import com.seadun.helios.mapper.BaseLogMapper;
 import com.seadun.helios.mapper.DetectPcRelationMapper;
 import com.seadun.helios.mapper.PcMapper;
@@ -36,6 +38,8 @@ public class AgentService {
 	private DetectPcRelationMapper detectPcRelationMapper;
 	@Autowired
 	private PcMapper pcMapper;
+	@Autowired
+	private AlarmMapper alarmMapper;
 
 	@Transactional
 	public void detect() {
@@ -75,6 +79,15 @@ public class AgentService {
 				detectPcRelation.setUptTime(new Date());
 				detectPcRelation.setUptUser("system");
 				detectPcRelationMapper.updateByPrimaryKeySelective(detectPcRelation);
+				Alarm alarm = new Alarm();
+				alarm.setCrtTime(new Date());
+				alarm.setCrtUser("system");
+				alarm.setId(UUID.randomUUID().toString());
+				alarm.setMessage("");
+				alarm.setPcCode(normal_vDetectPc.getAssetCode());
+				alarm.setPortId(normal_vDetectPc.getPortId());
+				alarm.setStatus(HeliosConstants.RELATION_ABNORMAL);
+				alarmMapper.insertSelective(alarm);
 			}else {
 				detectPcRelation.setStatus(HeliosConstants.RELATION_NORMAL);
 				detectPcRelation.setUptTime(new Date());

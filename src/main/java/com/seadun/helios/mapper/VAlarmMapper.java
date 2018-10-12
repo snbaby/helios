@@ -1,9 +1,13 @@
 package com.seadun.helios.mapper;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.session.RowBounds;
+
 import com.seadun.helios.entity.VAlarm;
 
 public interface VAlarmMapper {
-    int insert(VAlarm record);
-
-    int insertSelective(VAlarm record);
+	List<VAlarm> selectPage(RowBounds rowBounds, @Param(value = "detectId") String detectId,
+			@Param(value = "assetCode") String assetCode);
 }

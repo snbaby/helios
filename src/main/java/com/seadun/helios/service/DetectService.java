@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,15 +11,24 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.github.pagehelper.PageInfo;
 import com.seadun.helios.constant.HeliosExceptionConstants;
-import com.seadun.helios.entity.BaseUser;
 import com.seadun.helios.entity.Detect;
+import com.seadun.helios.entity.DetectPort;
 import com.seadun.helios.entity.HeliosException;
+import com.seadun.helios.mapper.AlarmMapper;
 import com.seadun.helios.mapper.DetectMapper;
+import com.seadun.helios.mapper.DetectPcRelationMapper;
+import com.seadun.helios.mapper.DetectPortMapper;
 
 @Service
 public class DetectService {
 	@Autowired
 	private DetectMapper detectMapper;
+	@Autowired
+	private DetectPortMapper detectPortMapper;
+	@Autowired
+	private DetectPcRelationMapper detectPcRelationMapper;
+	@Autowired
+	private AlarmMapper alarmMapper;
 	
 	@Transactional
 	public PageInfo<Detect> page(int pageNum,int pageSize,String code,String name,String ip) {
@@ -61,6 +69,13 @@ public class DetectService {
 	@Transactional
 	public void deleteDetect(String id) {
 		detectMapper.deleteByPrimaryKey(id);
+		
+		List<DetectPort> detectPortList = detectPortMapper.list(id);
+		detectPortList.forEach(detectPort->{
+			detectPcRelationMapper.deleteByPortId(detectPort.getId());
+			alarmMapper.deleteByPortId(detectPort.getId());
+			detectPortMapper.deleteByPrimaryKey(detectPort.getId());
+		});
 	}
 	
 	@Transactional

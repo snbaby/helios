@@ -141,6 +141,15 @@
 			enableSelectByExample="false"
 			selectByExampleQueryId="false">
 		</table>
+		<table
+			tableName="ALARM"
+			domainObjectName="Alarm"
+			enableCountByExample="false"
+			enableUpdateByExample="false"
+			enableDeleteByExample="false"
+			enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
 		-->
 		<table
 			tableName="V_ALARM"
@@ -151,14 +160,6 @@
 			enableSelectByExample="false"
 			selectByExampleQueryId="false">
 		</table>
-		<table
-			tableName="ALARM"
-			domainObjectName="Alarm"
-			enableCountByExample="false"
-			enableUpdateByExample="false"
-			enableDeleteByExample="false"
-			enableSelectByExample="false"
-			selectByExampleQueryId="false">
-		</table>
+		
 	</context>
 </generatorConfiguration>

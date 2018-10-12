@@ -1,162 +1,126 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.seadun.helios.mapper.VAlarmMapper">
-  <resultMap id="BaseResultMap" type="com.seadun.helios.entity.VAlarm">
-    <result column="DETECT_ID" jdbcType="VARCHAR" property="detectId" />
-    <result column="DETECT_CODE" jdbcType="VARCHAR" property="detectCode" />
-    <result column="DETECT_NAME" jdbcType="VARCHAR" property="detectName" />
-    <result column="DETECT_IP" jdbcType="VARCHAR" property="detectIp" />
-    <result column="PORT_ID" jdbcType="VARCHAR" property="portId" />
-    <result column="PORT_CODE" jdbcType="VARCHAR" property="portCode" />
-    <result column="PORT_NAME" jdbcType="VARCHAR" property="portName" />
-    <result column="PORT_PORT" jdbcType="DECIMAL" property="portPort" />
-    <result column="ASSET_CODE" jdbcType="VARCHAR" property="assetCode" />
-    <result column="ASSET_NAME" jdbcType="VARCHAR" property="assetName" />
-    <result column="ASSET_DUTY_CODE" jdbcType="VARCHAR" property="assetDutyCode" />
-    <result column="ASSET_DUTY_NAME" jdbcType="VARCHAR" property="assetDutyName" />
-    <result column="ASSET_TYPE" jdbcType="VARCHAR" property="assetType" />
-    <result column="ORG_CODE" jdbcType="VARCHAR" property="orgCode" />
-    <result column="ORG_NAME" jdbcType="VARCHAR" property="orgName" />
-    <result column="ASSET_STATUS" jdbcType="VARCHAR" property="assetStatus" />
-    <result column="ALARM_ID" jdbcType="VARCHAR" property="alarmId" />
-    <result column="ALARM_STATUS" jdbcType="VARCHAR" property="alarmStatus" />
-    <result column="ALARM_MESSAGE" jdbcType="VARCHAR" property="alarmMessage" />
-  </resultMap>
-  <insert id="insert" parameterType="com.seadun.helios.entity.VAlarm">
-    insert into V_ALARM (DETECT_ID, DETECT_CODE, DETECT_NAME, 
-      DETECT_IP, PORT_ID, PORT_CODE, 
-      PORT_NAME, PORT_PORT, ASSET_CODE, 
-      ASSET_NAME, ASSET_DUTY_CODE, ASSET_DUTY_NAME, 
-      ASSET_TYPE, ORG_CODE, ORG_NAME, 
-      ASSET_STATUS, ALARM_ID, ALARM_STATUS, 
-      ALARM_MESSAGE)
-    values (#{detectId,jdbcType=VARCHAR}, #{detectCode,jdbcType=VARCHAR}, #{detectName,jdbcType=VARCHAR}, 
-      #{detectIp,jdbcType=VARCHAR}, #{portId,jdbcType=VARCHAR}, #{portCode,jdbcType=VARCHAR}, 
-      #{portName,jdbcType=VARCHAR}, #{portPort,jdbcType=DECIMAL}, #{assetCode,jdbcType=VARCHAR}, 
-      #{assetName,jdbcType=VARCHAR}, #{assetDutyCode,jdbcType=VARCHAR}, #{assetDutyName,jdbcType=VARCHAR}, 
-      #{assetType,jdbcType=VARCHAR}, #{orgCode,jdbcType=VARCHAR}, #{orgName,jdbcType=VARCHAR}, 
-      #{assetStatus,jdbcType=VARCHAR}, #{alarmId,jdbcType=VARCHAR}, #{alarmStatus,jdbcType=VARCHAR}, 
-      #{alarmMessage,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.seadun.helios.entity.VAlarm">
-    insert into V_ALARM
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="detectId != null">
-        DETECT_ID,
-      </if>
-      <if test="detectCode != null">
-        DETECT_CODE,
-      </if>
-      <if test="detectName != null">
-        DETECT_NAME,
-      </if>
-      <if test="detectIp != null">
-        DETECT_IP,
-      </if>
-      <if test="portId != null">
-        PORT_ID,
-      </if>
-      <if test="portCode != null">
-        PORT_CODE,
-      </if>
-      <if test="portName != null">
-        PORT_NAME,
-      </if>
-      <if test="portPort != null">
-        PORT_PORT,
-      </if>
-      <if test="assetCode != null">
-        ASSET_CODE,
-      </if>
-      <if test="assetName != null">
-        ASSET_NAME,
-      </if>
-      <if test="assetDutyCode != null">
-        ASSET_DUTY_CODE,
-      </if>
-      <if test="assetDutyName != null">
-        ASSET_DUTY_NAME,
-      </if>
-      <if test="assetType != null">
-        ASSET_TYPE,
-      </if>
-      <if test="orgCode != null">
-        ORG_CODE,
-      </if>
-      <if test="orgName != null">
-        ORG_NAME,
-      </if>
-      <if test="assetStatus != null">
-        ASSET_STATUS,
-      </if>
-      <if test="alarmId != null">
-        ALARM_ID,
-      </if>
-      <if test="alarmStatus != null">
-        ALARM_STATUS,
-      </if>
-      <if test="alarmMessage != null">
-        ALARM_MESSAGE,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="detectId != null">
-        #{detectId,jdbcType=VARCHAR},
-      </if>
-      <if test="detectCode != null">
-        #{detectCode,jdbcType=VARCHAR},
-      </if>
-      <if test="detectName != null">
-        #{detectName,jdbcType=VARCHAR},
-      </if>
-      <if test="detectIp != null">
-        #{detectIp,jdbcType=VARCHAR},
-      </if>
-      <if test="portId != null">
-        #{portId,jdbcType=VARCHAR},
-      </if>
-      <if test="portCode != null">
-        #{portCode,jdbcType=VARCHAR},
-      </if>
-      <if test="portName != null">
-        #{portName,jdbcType=VARCHAR},
-      </if>
-      <if test="portPort != null">
-        #{portPort,jdbcType=DECIMAL},
-      </if>
-      <if test="assetCode != null">
-        #{assetCode,jdbcType=VARCHAR},
-      </if>
-      <if test="assetName != null">
-        #{assetName,jdbcType=VARCHAR},
-      </if>
-      <if test="assetDutyCode != null">
-        #{assetDutyCode,jdbcType=VARCHAR},
-      </if>
-      <if test="assetDutyName != null">
-        #{assetDutyName,jdbcType=VARCHAR},
-      </if>
-      <if test="assetType != null">
-        #{assetType,jdbcType=VARCHAR},
-      </if>
-      <if test="orgCode != null">
-        #{orgCode,jdbcType=VARCHAR},
-      </if>
-      <if test="orgName != null">
-        #{orgName,jdbcType=VARCHAR},
-      </if>
-      <if test="assetStatus != null">
-        #{assetStatus,jdbcType=VARCHAR},
-      </if>
-      <if test="alarmId != null">
-        #{alarmId,jdbcType=VARCHAR},
-      </if>
-      <if test="alarmStatus != null">
-        #{alarmStatus,jdbcType=VARCHAR},
-      </if>
-      <if test="alarmMessage != null">
-        #{alarmMessage,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
+	<resultMap
+		id="BaseResultMap"
+		type="com.seadun.helios.entity.VAlarm">
+		<result
+			column="DETECT_ID"
+			jdbcType="VARCHAR"
+			property="detectId" />
+		<result
+			column="DETECT_CODE"
+			jdbcType="VARCHAR"
+			property="detectCode" />
+		<result
+			column="DETECT_NAME"
+			jdbcType="VARCHAR"
+			property="detectName" />
+		<result
+			column="DETECT_IP"
+			jdbcType="VARCHAR"
+			property="detectIp" />
+		<result
+			column="PORT_ID"
+			jdbcType="VARCHAR"
+			property="portId" />
+		<result
+			column="PORT_CODE"
+			jdbcType="VARCHAR"
+			property="portCode" />
+		<result
+			column="PORT_NAME"
+			jdbcType="VARCHAR"
+			property="portName" />
+		<result
+			column="PORT_PORT"
+			jdbcType="DECIMAL"
+			property="portPort" />
+		<result
+			column="ASSET_CODE"
+			jdbcType="VARCHAR"
+			property="assetCode" />
+		<result
+			column="ASSET_NAME"
+			jdbcType="VARCHAR"
+			property="assetName" />
+		<result
+			column="ASSET_DUTY_CODE"
+			jdbcType="VARCHAR"
+			property="assetDutyCode" />
+		<result
+			column="ASSET_DUTY_NAME"
+			jdbcType="VARCHAR"
+			property="assetDutyName" />
+		<result
+			column="ASSET_TYPE"
+			jdbcType="VARCHAR"
+			property="assetType" />
+		<result
+			column="ORG_CODE"
+			jdbcType="VARCHAR"
+			property="orgCode" />
+		<result
+			column="ORG_NAME"
+			jdbcType="VARCHAR"
+			property="orgName" />
+		<result
+			column="ASSET_STATUS"
+			jdbcType="VARCHAR"
+			property="assetStatus" />
+		<result
+			column="ALARM_ID"
+			jdbcType="VARCHAR"
+			property="alarmId" />
+		<result
+			column="ALARM_STATUS"
+			jdbcType="VARCHAR"
+			property="alarmStatus" />
+		<result
+			column="ALARM_MESSAGE"
+			jdbcType="VARCHAR"
+			property="alarmMessage" />
+		<result
+			column="CRT_TIME"
+			jdbcType="TIMESTAMP"
+			property="crtTime" />
+		<result
+			column="CRT_USER"
+			jdbcType="VARCHAR"
+			property="crtUser" />
+		<result
+			column="UPT_USER"
+			jdbcType="VARCHAR"
+			property="uptUser" />
+		<result
+			column="UPT_TIME"
+			jdbcType="TIMESTAMP"
+			property="uptTime" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		DETECT_ID, DETECT_CODE, DETECT_NAME,
+		DETECT_IP, PORT_ID, PORT_CODE,
+		PORT_NAME, PORT_PORT, ASSET_CODE,
+		ASSET_NAME, ASSET_DUTY_CODE, ASSET_DUTY_NAME,
+		ASSET_TYPE, ORG_CODE, ORG_NAME,
+		ASSET_STATUS, ALARM_ID, ALARM_STATUS,
+		ALARM_MESSAGE, CRT_TIME, CRT_USER,
+		UPT_USER, UPT_TIME
+	</sql>
+
+	<select
+		id="selectPage"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from V_ALARM
+		where 1=1
+		<if test="assetCode != ''">
+			and ASSET_CODE = #{assetCode,jdbcType=VARCHAR}
+		</if>
+		<if test="detectId != ''">
+			and DETECT_ID = #{detectId,jdbcType=VARCHAR}
+		</if>
+	</select>
 </mapper>
