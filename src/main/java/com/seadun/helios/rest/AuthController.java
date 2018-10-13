@@ -1,7 +1,5 @@
 package com.seadun.helios.rest;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.codec.digest.DigestUtils;
@@ -19,14 +17,10 @@ import com.alibaba.fastjson.JSONObject;
 import com.seadun.helios.constant.HeliosExceptionConstants;
 import com.seadun.helios.entity.BaseUser;
 import com.seadun.helios.entity.HeliosException;
-import com.seadun.helios.entity.VAuthMenuTree;
 import com.seadun.helios.mapper.BaseUserMapper;
 import com.seadun.helios.mapper.VAuthMenuMapper;
 import com.seadun.helios.response.ResponseSuccessResult;
 import com.seadun.helios.service.LogService;
-import com.serotonin.modbus4j.exception.ErrorResponseException;
-import com.serotonin.modbus4j.exception.ModbusInitException;
-import com.serotonin.modbus4j.exception.ModbusTransportException;
 
 @Controller
 @RequestMapping("/auth")
@@ -40,8 +34,7 @@ public class AuthController {
 
 	@PostMapping(value = { "/login" })
 	@ResponseBody
-	public ResponseEntity<ResponseSuccessResult> clientData(HttpServletRequest request,@RequestBody BaseUser baseUserParam)
-			throws ModbusTransportException, ErrorResponseException, ModbusInitException {
+	public ResponseEntity<ResponseSuccessResult> clientData(HttpServletRequest request,@RequestBody BaseUser baseUserParam) {
 
 		if (StringUtils.isBlank(baseUserParam.getCode()) || StringUtils.isBlank(baseUserParam.getPassword())) {
 			throw new HeliosException(HeliosExceptionConstants.PARAMETER_EXCEPTION_CODE,

@@ -4,6 +4,7 @@ import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.alibaba.fastjson.JSONObject;
 import com.seadun.helios.constant.HeliosExceptionConstants;
@@ -24,6 +25,7 @@ public class IemsService {
 	@Autowired
 	private PcMapper pcMapper;
 
+	@Transactional
 	public void leave(JSONObject jsb) {
 		DetectPcRelation detectPcRelation = detectPcRelationMapper.selectByPcCode(jsb.getString("ZCH"));
 		if (!detectPcRelation.getStatus().equals("0")) {//正常
@@ -68,6 +70,7 @@ public class IemsService {
 
 	}
 	
+	@Transactional
 	public void reback(JSONObject jsb) {
 		DetectPcRelation detectPcRelation = detectPcRelationMapper.selectByPcCode(jsb.getString("ZCH"));
 		if (!detectPcRelation.getStatus().equals("2")) {//离开
