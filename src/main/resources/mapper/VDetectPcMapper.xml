@@ -98,6 +98,17 @@
 		</if>
 	</select>
 	<select
+		id="selectById"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from V_DETECT_PC
+		where 1=1
+		<if test="id != ''">
+			and ID = #{id,jdbcType=VARCHAR}
+		</if>
+	</select>
+	<select
 		id="list"
 		resultMap="BaseResultMap">
 		select

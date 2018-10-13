@@ -123,4 +123,15 @@
 			and DETECT_ID = #{detectId,jdbcType=VARCHAR}
 		</if>
 	</select>
+	<select
+		id="selectByAlarmId"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from V_ALARM
+		where 1=1
+		<if test="alarmId != ''">
+			and ALARM_ID = #{alarmId,jdbcType=VARCHAR}
+		</if>
+	</select>
 </mapper>

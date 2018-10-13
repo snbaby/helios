@@ -9,7 +9,7 @@
 				value="true" />
 		</commentGenerator>
 		<jdbcConnection
-			connectionURL="jdbc:oracle:thin:@192.168.43.172:1521:HELIOS"
+			connectionURL="jdbc:oracle:thin:@192.168.2.45:1521:HELIOS"
 			driverClass="oracle.jdbc.driver.OracleDriver"
 			password="admin"
 			userId="root" />
@@ -150,7 +150,6 @@
 			enableSelectByExample="false"
 			selectByExampleQueryId="false">
 		</table>
-		-->
 		<table
 			tableName="V_ALARM"
 			domainObjectName="VAlarm"
@@ -160,6 +159,26 @@
 			enableSelectByExample="false"
 			selectByExampleQueryId="false">
 		</table>
+		<table
+			tableName="PC_RECORD"
+			domainObjectName="PcRecord"
+			enableCountByExample="false"
+			enableUpdateByExample="false"
+			enableDeleteByExample="false"
+			enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		-->
+		<table
+			tableName="BASE_LOG"
+			domainObjectName="BaseLog"
+			enableCountByExample="false"
+			enableUpdateByExample="false"
+			enableDeleteByExample="false"
+			enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		
 		
 	</context>
 </generatorConfiguration>

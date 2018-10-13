@@ -80,6 +80,12 @@ public class AgentService {
 				detectPcRelation.setUptTime(new Date());
 				detectPcRelation.setUptUser("system");
 				detectPcRelationMapper.updateByPrimaryKeySelective(detectPcRelation);
+				
+				pc.setStatus("1");
+				pc.setUptTime(new Date());
+				pc.setUptUser("system");
+				pcMapper.updateByPrimaryKeySelective(pc);
+				
 				Alarm alarm = new Alarm();
 				alarm.setCrtTime(new Date());
 				alarm.setCrtUser("system");

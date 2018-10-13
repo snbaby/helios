@@ -57,5 +57,20 @@ public class HeliosExceptionConstants {
 	public static final String PARAMETER_EXCEPTION_MESSAGE = "参数校验失败";
 	public static final HttpStatus PARAMETER_EXCEPTION_HTTP_STATUS = HttpStatus.BAD_REQUEST;
 	
+	// 参数不合法
+	public static final String INIT_EXCEPTION_CODE = "INIT_EXCEPTION";
+	public static final String INIT_EXCEPTION_MESSAGE = "数据初始化异常";
+	public static final HttpStatus INIT_EXCEPTION_HTTP_STATUS = HttpStatus.BAD_REQUEST;
+	
+	// 参数不合法
+	public static final String PC_STATUS_EXCEPTION_CODE = "PC_STATUS_EXCEPTION";
+	public static final String PC_STATUS_EXCEPTION_MESSAGE = "设备状态异常，无法办理离开流程";
+	public static final HttpStatus PC_STATUS_EXCEPTION_HTTP_STATUS = HttpStatus.FORBIDDEN;
+	
+	// 参数不合法
+	public static final String FIXED_EXCEPTION_CODE = "FIXED_EXCEPTION";
+	public static final String FIXED_EXCEPTION_MESSAGE = "链接状态异常，无法进行人工修复";
+	public static final HttpStatus FIXED_EXCEPTION_HTTP_STATUS = HttpStatus.FORBIDDEN;
+	
 	
 }

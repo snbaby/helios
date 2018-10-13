@@ -18,6 +18,8 @@ public interface BaseLogMapper {
 
     int updateByPrimaryKeySelective(BaseLog record);
 
+    int updateByPrimaryKeyWithBLOBs(BaseLog record);
+
     int updateByPrimaryKey(BaseLog record);
     
     List<BaseLog> selectPage(RowBounds rowBounds,@Param(value = "name") String name,@Param(value = "code") String code);

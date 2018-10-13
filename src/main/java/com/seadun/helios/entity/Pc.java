@@ -26,6 +26,8 @@ public class Pc {
     private String uptUser;
 
     private Date uptTime;
+    
+    private String azwz;
 
     public String getAssetCode() {
         return assetCode;
@@ -122,4 +124,14 @@ public class Pc {
     public void setUptTime(Date uptTime) {
         this.uptTime = uptTime;
     }
+
+	public String getAzwz() {
+		return azwz;
+	}
+
+	public void setAzwz(String azwz) {
+		this.azwz = azwz;
+	}
+    
+    
 }

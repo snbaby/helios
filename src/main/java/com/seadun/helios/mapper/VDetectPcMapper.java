@@ -15,4 +15,6 @@ public interface VDetectPcMapper {
 	List<VDetectPc> list();
 	
 	List<VDetectPc> selectByStatus(@Param(value = "status") String status);
+	
+	VDetectPc selectById(@Param(value = "id") String id);
 }

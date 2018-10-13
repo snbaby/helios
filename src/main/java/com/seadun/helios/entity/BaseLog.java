@@ -5,8 +5,6 @@ import java.util.Date;
 public class BaseLog {
     private String id;
 
-    private String message;
-
     private String crtUser;
 
     private String crtName;
@@ -15,20 +13,14 @@ public class BaseLog {
 
     private Date crtTime;
 
+    private String message;
+
     public String getId() {
         return id;
     }
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
     }
 
     public String getCrtUser() {
@@ -61,5 +53,13 @@ public class BaseLog {
 
     public void setCrtTime(Date crtTime) {
         this.crtTime = crtTime;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }
