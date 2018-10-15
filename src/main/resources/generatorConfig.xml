@@ -170,8 +170,8 @@
 		</table>
 		-->
 		<table
-			tableName="BASE_LOG"
-			domainObjectName="BaseLog"
+			tableName="V_PC"
+			domainObjectName="VPc"
 			enableCountByExample="false"
 			enableUpdateByExample="false"
 			enableDeleteByExample="false"
