@@ -20,6 +20,8 @@ public class Alarm {
     private Date uptTime;
 
     private String uptUser;
+    
+    private BaseUser uUser;
 
     public String getId() {
         return id;
@@ -92,4 +94,13 @@ public class Alarm {
     public void setUptUser(String uptUser) {
         this.uptUser = uptUser;
     }
+
+	public BaseUser getuUser() {
+		return uUser;
+	}
+
+	public void setuUser(BaseUser uUser) {
+		this.uUser = uUser;
+	}
+
 }

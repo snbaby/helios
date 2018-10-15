@@ -44,7 +44,25 @@
 		<result column="UPT_TIME" jdbcType="TIMESTAMP"
 			property="uptTime" />
 		<result column="UPT_USER" jdbcType="VARCHAR" property="uptUser" />
+		<collection property="uUser" select="getUUser"
+			column="UPT_USER" />
 	</resultMap>
+
+	<resultMap id="BaseUserMap"
+		type="com.seadun.helios.entity.BaseUser">
+		<id column="ID" jdbcType="VARCHAR" property="id" />
+		<result column="NAME" jdbcType="VARCHAR" property="name" />
+		<result column="CODE" jdbcType="VARCHAR" property="code" />
+		<result column="CRT_USER" jdbcType="VARCHAR" property="crtUser" />
+		<result column="CRT_TIME" jdbcType="TIMESTAMP"
+			property="crtTime" />
+		<result column="UPT_USER" jdbcType="VARCHAR" property="uptUser" />
+		<result column="UPT_TIME" jdbcType="TIMESTAMP"
+			property="uptTime" />
+	</resultMap>
+	<sql id="Base_User_List">
+		ID, NAME, CODE, CRT_USER, CRT_TIME, UPT_USER, UPT_TIME
+	</sql>
 
 	<sql id="Base_Column_List">
 		ASSET_CODE, ASSET_NAME, ASSET_DUTY_CODE,
@@ -62,11 +80,19 @@
 		UPT_USER
 	</sql>
 
+	<select id="getUUser" resultMap="BaseUserMap">
+		select
+		<include refid="Base_User_List" />
+		from BASE_USER
+		where ID = #{UPT_USER,jdbcType=VARCHAR}
+	</select>
+	
 	<select id="getAlarmList" resultMap="BaseAlarmMap">
 		select
 		<include refid="Base_Alarm_List" />
 		from ALARM
 		where PC_CODE = #{ASSET_CODE,jdbcType=VARCHAR}
+		order by CRT_TIME desc
 	</select>
 
 	<select id="selectPage" resultMap="BaseResultMap">
