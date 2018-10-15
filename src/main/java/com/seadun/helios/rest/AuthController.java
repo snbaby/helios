@@ -34,7 +34,7 @@ public class AuthController {
 
 	@PostMapping(value = { "/login" })
 	@ResponseBody
-	public ResponseEntity<ResponseSuccessResult> clientData(HttpServletRequest request,@RequestBody BaseUser baseUserParam) {
+	public ResponseEntity<ResponseSuccessResult> login(HttpServletRequest request,@RequestBody BaseUser baseUserParam) {
 
 		if (StringUtils.isBlank(baseUserParam.getCode()) || StringUtils.isBlank(baseUserParam.getPassword())) {
 			throw new HeliosException(HeliosExceptionConstants.PARAMETER_EXCEPTION_CODE,
@@ -65,6 +65,39 @@ public class AuthController {
 		logService.addLog(request, "登录成功");
 		
 		ResponseSuccessResult responseResult = new ResponseSuccessResult(HttpStatus.OK.value(), "success",jsb);
+		return new ResponseEntity<>(responseResult, HttpStatus.OK);
+
+	}
+	
+	@PostMapping(value = { "/logout" })
+	@ResponseBody
+	public ResponseEntity<ResponseSuccessResult> logout(HttpServletRequest request) {
+		logService.addLog(request, "登出成功");
+		request.getSession().invalidate();
+		ResponseSuccessResult responseResult = new ResponseSuccessResult(HttpStatus.OK.value(), "success");
+		return new ResponseEntity<>(responseResult, HttpStatus.OK);
+
+	}
+	
+	@PostMapping(value = { "/update-password" })
+	@ResponseBody
+	public ResponseEntity<ResponseSuccessResult> login(HttpServletRequest request,@RequestBody JSONObject jsb) {
+		String oldPassword = jsb.getString("oldPassword");
+		String newPassword = jsb.getString("newPassword");
+		
+		BaseUser baseUser = baseUserMapper.selectUser(request.getSession().getAttribute("code").toString(), DigestUtils.md5Hex(oldPassword));
+		if (baseUser == null) {
+			throw new HeliosException(HeliosExceptionConstants.USER_VALID_FAILD_EXCEPTION_CODE,
+					HeliosExceptionConstants.USER_VALID_FAILD_EXCEPTION_MESSAGE,
+					HeliosExceptionConstants.USER_VALID_FAILD_EXCEPTION_HTTP_STATUS);
+		}
+
+		baseUser.setPassword(DigestUtils.md5Hex(newPassword));
+		baseUserMapper.updateByPrimaryKeySelective(baseUser);
+		
+		logService.addLog(request, "修改密码成功");
+		request.getSession().invalidate();
+		ResponseSuccessResult responseResult = new ResponseSuccessResult(HttpStatus.OK.value(), "success");
 		return new ResponseEntity<>(responseResult, HttpStatus.OK);
 
 	}

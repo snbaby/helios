@@ -1,6 +1,6 @@
 logging:
   level:
-    root: debug
+    root: error
   path: /var/log/helios
 server:
   port: 7000
