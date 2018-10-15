@@ -160,11 +160,13 @@
     <include refid="Base_Column_List" />
     from BASE_MENU
     where PARENT_ID = #{ID,jdbcType=VARCHAR}
+    order by CRT_TIME asc
   </select>
   <select id="selectTree" resultMap="BaseMenuTreeMap">
     select 
     <include refid="Base_Column_List" />
     from BASE_MENU
     where PARENT_ID = '-1'
+    order by CRT_TIME asc
   </select>
 </mapper>

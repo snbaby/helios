@@ -251,6 +251,7 @@
 		ID, NAME, CODE, PATH,
 		PARENT_ID, CRT_USER, CRT_TIME,
 		UPT_USER, UPT_NAME
+		order by CRT_TIME asc
 	</select>
 	<select
 		id="select"
@@ -267,5 +268,6 @@
 		ID, NAME, CODE, PATH,
 		PARENT_ID, CRT_USER, CRT_TIME,
 		UPT_USER, UPT_NAME
+		order by CRT_TIME asc
 	</select>
 </mapper>
