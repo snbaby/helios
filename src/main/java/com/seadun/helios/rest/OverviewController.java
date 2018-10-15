@@ -11,11 +11,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.seadun.helios.response.ResponseSuccessResult;
 import com.seadun.helios.service.OverviewService;
 
-import lombok.extern.slf4j.Slf4j;
-
 @Controller
 @RequestMapping("/api/overview")
-@Slf4j
 public class OverviewController {
 	@Autowired
 	private OverviewService overviewService;

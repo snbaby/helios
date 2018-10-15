@@ -15,8 +15,6 @@ public class AgentController {
 	
 	@Scheduled(initialDelay=5000,fixedDelay = 5000)
 	public void detect() {
-		System.out.println("------start");
 		agentService.detect();
-		System.out.println("------end");
 	}
 }

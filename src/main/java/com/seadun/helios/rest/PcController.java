@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONObject;
 import com.seadun.helios.response.ResponseSuccessResult;
+import com.seadun.helios.service.LogService;
 import com.seadun.helios.service.PcService;
 
 @Controller
@@ -21,6 +22,8 @@ import com.seadun.helios.service.PcService;
 public class PcController {
 	@Autowired
 	private PcService pcService;
+	@Autowired
+	private LogService logService;
 
 	@PostMapping(value = { "/page" })
 	@ResponseBody
@@ -48,6 +51,8 @@ public class PcController {
 	public ResponseEntity<ResponseSuccessResult> rebackConfirm(@RequestBody JSONObject jsb,HttpServletRequest request) {
 		String assetCode = jsb.getString("assetCode");
 		pcService.rebackConfirm(assetCode,request.getSession().getAttribute("userId").toString());
+		
+		logService.addLog(request, "确认返回："+jsb.toJSONString());
 		ResponseSuccessResult responseResult = new ResponseSuccessResult(HttpStatus.OK.value(), "success");
 		return new ResponseEntity<>(responseResult, HttpStatus.OK);
 	}

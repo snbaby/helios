@@ -95,7 +95,7 @@ public class AuthController {
 		baseUser.setPassword(DigestUtils.md5Hex(newPassword));
 		baseUserMapper.updateByPrimaryKeySelective(baseUser);
 		
-		logService.addLog(request, "修改密码成功");
+		logService.addLog(request, "修改密码成功："+jsb.toJSONString());
 		request.getSession().invalidate();
 		ResponseSuccessResult responseResult = new ResponseSuccessResult(HttpStatus.OK.value(), "success");
 		return new ResponseEntity<>(responseResult, HttpStatus.OK);

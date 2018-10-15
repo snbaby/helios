@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONObject;
-import com.seadun.helios.mapper.PcRecordMapper;
 import com.seadun.helios.response.ResponseSuccessResult;
 import com.seadun.helios.service.AlarmService;
 import com.seadun.helios.service.LogService;
