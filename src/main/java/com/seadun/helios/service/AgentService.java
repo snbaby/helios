@@ -96,10 +96,10 @@ public class AgentService {
 				alarm.setStatus(HeliosConstants.RELATION_ABNORMAL);
 				alarmMapper.insertSelective(alarm);
 			}else {
-				detectPcRelation.setStatus(HeliosConstants.RELATION_NORMAL);
+				/*detectPcRelation.setStatus(HeliosConstants.RELATION_NORMAL);
 				detectPcRelation.setUptTime(new Date());
 				detectPcRelation.setUptUser("system");
-				detectPcRelationMapper.updateByPrimaryKeySelective(detectPcRelation);
+				detectPcRelationMapper.updateByPrimaryKeySelective(detectPcRelation);*/
 			}
 		});
 	}

@@ -13,7 +13,7 @@ public class AgentController {
 	@Autowired
 	private AgentService agentService;
 	
-	@Scheduled(initialDelay=5000,fixedDelay = 5000)
+	@Scheduled(initialDelay=5000,fixedDelay = 500)
 	public void detect() {
 		agentService.detect();
 	}
