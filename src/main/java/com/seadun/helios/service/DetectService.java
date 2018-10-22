@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.github.pagehelper.PageInfo;
+import com.seadun.helios.constant.HeliosConstants;
 import com.seadun.helios.constant.HeliosExceptionConstants;
 import com.seadun.helios.entity.Detect;
 import com.seadun.helios.entity.DetectPort;
@@ -54,16 +55,33 @@ public class DetectService {
 					HeliosExceptionConstants.IP_EXIST_EXCEPTION_HTTP_STATUS);
 		}
 		
+		String detectId = UUID.randomUUID().toString();
+		
 		Detect detect = new Detect();
 		detect.setCode(code);
 		detect.setCrtTime(new Date());
 		detect.setCrtUser(crtUser);
-		detect.setId(UUID.randomUUID().toString());
+		detect.setId(detectId);
 		detect.setIp(ip);
 		detect.setName(name);
 		detect.setStatus("0");
 		
 		detectMapper.insertSelective(detect);
+		
+		for (short i = 1; i <= 16; i++) {
+			DetectPort detectPort = new DetectPort();
+			detectPort.setCode(code+"_U"+i);
+			detectPort.setCrtTime(new Date());
+			detectPort.setCrtUser(crtUser);
+			detectPort.setDetectId(detectId);
+			detectPort.setId(UUID.randomUUID().toString());
+			detectPort.setName("U"+i);
+			detectPort.setPort((short) (HeliosConstants.BASE_PORT+i));
+			detectPort.setStatus("0");
+			
+			detectPortMapper.insertSelective(detectPort);
+		}
+		
 	}
 	
 	@Transactional
