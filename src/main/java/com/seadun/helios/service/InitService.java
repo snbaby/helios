@@ -7,6 +7,7 @@ import java.util.UUID;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -47,6 +48,9 @@ public class InitService {
 
 	@Autowired
 	private PcMapper pcMapper;
+	
+	@Value("${iems.host}")
+	private String iemsHost;
 
 	@Transactional
 	public void init() {
@@ -364,7 +368,7 @@ public class InitService {
 
 		pcMapper.clear();
 
-		String url = "http://192.168.2.204:8080/default/iems/inter";
+		String url = "http://"+iemsHost+"/default/iems/inter";
 		Map<String, String> params = new HashMap<>();
 		params.put("appCode", "iemstest");
 		params.put("interface", "getSBTZXX");
