@@ -114,5 +114,6 @@
 		select
 		<include refid="Base_Column_List" />
 		from V_DETECT_PC
+		order by PORT_PORT asc
 	</select>
 </mapper>
