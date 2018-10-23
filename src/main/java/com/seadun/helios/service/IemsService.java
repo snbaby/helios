@@ -7,12 +7,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.alibaba.fastjson.JSONObject;
+import com.seadun.helios.constant.HeliosConstants;
 import com.seadun.helios.constant.HeliosExceptionConstants;
 import com.seadun.helios.entity.DetectPcRelation;
+import com.seadun.helios.entity.DetectPort;
 import com.seadun.helios.entity.HeliosException;
 import com.seadun.helios.entity.Pc;
 import com.seadun.helios.entity.PcRecord;
 import com.seadun.helios.mapper.DetectPcRelationMapper;
+import com.seadun.helios.mapper.DetectPortMapper;
 import com.seadun.helios.mapper.PcMapper;
 import com.seadun.helios.mapper.PcRecordMapper;
 
@@ -24,6 +27,8 @@ public class IemsService {
 	private PcRecordMapper pcRecordMapper;
 	@Autowired
 	private PcMapper pcMapper;
+	@Autowired
+	private DetectPortMapper detectPortMapper;
 
 	@Transactional
 	public void leave(JSONObject jsb) {
@@ -34,7 +39,7 @@ public class IemsService {
 					HeliosExceptionConstants.PC_STATUS_EXCEPTION_HTTP_STATUS);
 		}
 		
-		detectPcRelation.setStatus("2");//2离开
+		detectPcRelation.setStatus(HeliosConstants.RELATION_LEAVEL);//2离开
 		detectPcRelation.setUptTime(new Date());
 		detectPcRelation.setUptUser("system");
 		
@@ -42,10 +47,16 @@ public class IemsService {
 		
 		Pc pc = pcMapper.selectByPrimaryKey(jsb.getString("ZCH"));
 		pc.setAzwz(jsb.getString("AZWZ"));
-		pc.setStatus("2");//2离开
+		pc.setStatus(HeliosConstants.RELATION_LEAVEL);//2离开
 		pc.setUptTime(new Date());
 		pc.setUptUser("system");
 		pcMapper.updateByPrimaryKeySelective(pc);
+		
+		DetectPort detectPort = detectPortMapper.selectByPrimaryKey(detectPcRelation.getPortId());
+		detectPort.setStatus(HeliosConstants.RELATION_LEAVEL);
+		detectPort.setUptName(new Date());
+		detectPort.setUptUser("system");
+		detectPortMapper.updateByPrimaryKey(detectPort);
 
 		PcRecord pcRecord = new PcRecord();
 		pcRecord.setId(jsb.getString("pId"));
@@ -73,13 +84,13 @@ public class IemsService {
 	@Transactional
 	public void reback(JSONObject jsb) {
 		DetectPcRelation detectPcRelation = detectPcRelationMapper.selectByPcCode(jsb.getString("ZCH"));
-		if (!detectPcRelation.getStatus().equals("2")) {//离开
+		if (!detectPcRelation.getStatus().equals(HeliosConstants.RELATION_LEAVEL)) {//离开
 			throw new HeliosException(HeliosExceptionConstants.PC_STATUS_EXCEPTION_CODE,
 					HeliosExceptionConstants.PC_STATUS_EXCEPTION_MESSAGE,
 					HeliosExceptionConstants.PC_STATUS_EXCEPTION_HTTP_STATUS);
 		}
 		
-		detectPcRelation.setStatus("3");//3返回
+		detectPcRelation.setStatus(HeliosConstants.RELATION_REBACK);//3返回
 		detectPcRelation.setUptTime(new Date());
 		detectPcRelation.setUptUser("system");
 		
@@ -87,10 +98,16 @@ public class IemsService {
 		
 		Pc pc = pcMapper.selectByPrimaryKey(jsb.getString("ZCH"));
 		pc.setAzwz(jsb.getString("AZWZ"));
-		pc.setStatus("3");//3返回
+		pc.setStatus(HeliosConstants.RELATION_REBACK);//3返回
 		pc.setUptTime(new Date());
 		pc.setUptUser("system");
 		pcMapper.updateByPrimaryKeySelective(pc);
+		
+		DetectPort detectPort = detectPortMapper.selectByPrimaryKey(detectPcRelation.getPortId());
+		detectPort.setStatus(HeliosConstants.RELATION_REBACK);
+		detectPort.setUptName(new Date());
+		detectPort.setUptUser("system");
+		detectPortMapper.updateByPrimaryKey(detectPort);
 
 		PcRecord pcRecord = new PcRecord();
 		pcRecord.setId(jsb.getString("pId"));

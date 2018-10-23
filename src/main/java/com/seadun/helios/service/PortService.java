@@ -76,4 +76,9 @@ public class PortService {
 	public List<DetectPort> list(String detectId) {
 		return detectPortMapper.list(detectId);
 	}
+	
+	@Transactional
+	public List<DetectPort> useableList(String detectId) {
+		return detectPortMapper.useableList(detectId);
+	}
 }

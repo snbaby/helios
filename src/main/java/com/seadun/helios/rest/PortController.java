@@ -84,4 +84,16 @@ public class PortController {
 				portService.list(detectId));
 		return new ResponseEntity<>(responseResult, HttpStatus.OK);
 	}
+	
+	@GetMapping(value = { "/list/useable" })
+	@ResponseBody
+	public ResponseEntity<ResponseSuccessResult> useableList(String detectId) {
+		if(StringUtils.isBlank(detectId)) {
+			detectId = "";
+		}
+		
+		ResponseSuccessResult responseResult = new ResponseSuccessResult(HttpStatus.OK.value(), "success",
+				portService.useableList(detectId));
+		return new ResponseEntity<>(responseResult, HttpStatus.OK);
+	}
 }

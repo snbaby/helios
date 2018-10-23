@@ -18,7 +18,7 @@ public class Pc {
     private String orgName;
 
     private String status;
-
+    
     private String crtUser;
 
     private Date crtTime;
@@ -132,6 +132,5 @@ public class Pc {
 	public void setAzwz(String azwz) {
 		this.azwz = azwz;
 	}
-    
     
 }

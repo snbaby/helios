@@ -46,6 +46,14 @@ public class PcController {
 		return new ResponseEntity<>(responseResult, HttpStatus.OK);
 	}
 	
+	@GetMapping(value = { "/list/useable" })
+	@ResponseBody
+	public ResponseEntity<ResponseSuccessResult> useableLit() {
+		ResponseSuccessResult responseResult = new ResponseSuccessResult(HttpStatus.OK.value(), "success",
+				pcService.useableLit());
+		return new ResponseEntity<>(responseResult, HttpStatus.OK);
+	}
+	
 	@PostMapping(value = { "/reback-confirm" })
 	@ResponseBody
 	public ResponseEntity<ResponseSuccessResult> rebackConfirm(@RequestBody JSONObject jsb,HttpServletRequest request) {

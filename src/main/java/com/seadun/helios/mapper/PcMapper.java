@@ -24,5 +24,7 @@ public interface PcMapper {
 	
 	List<Pc> list();
 	
+	List<Pc> useableLit();
+	
 	int clear();
 }

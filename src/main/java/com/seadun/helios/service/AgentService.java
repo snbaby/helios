@@ -12,11 +12,13 @@ import com.seadun.helios.constant.HeliosConstants;
 import com.seadun.helios.entity.Alarm;
 import com.seadun.helios.entity.BaseLog;
 import com.seadun.helios.entity.DetectPcRelation;
+import com.seadun.helios.entity.DetectPort;
 import com.seadun.helios.entity.Pc;
 import com.seadun.helios.entity.VDetectPc;
 import com.seadun.helios.mapper.AlarmMapper;
 import com.seadun.helios.mapper.BaseLogMapper;
 import com.seadun.helios.mapper.DetectPcRelationMapper;
+import com.seadun.helios.mapper.DetectPortMapper;
 import com.seadun.helios.mapper.PcMapper;
 import com.seadun.helios.mapper.VDetectPcMapper;
 import com.serotonin.modbus4j.ModbusFactory;
@@ -40,6 +42,8 @@ public class AgentService {
 	private PcMapper pcMapper;
 	@Autowired
 	private AlarmMapper alarmMapper;
+	@Autowired
+	private DetectPortMapper detectPortMapper;
 
 	@Transactional
 	public void detect() {
@@ -73,18 +77,26 @@ public class AgentService {
 			} finally {
 				master.destroy();
 			}
-			DetectPcRelation detectPcRelation = detectPcRelationMapper.selectByPrimaryKey(normal_vDetectPc.getId());
-			Pc pc = pcMapper.selectByPrimaryKey(normal_vDetectPc.getAssetCode());
+			
 			if(!num.equals(HeliosConstants.DETECT_NORM)) {
+				DetectPcRelation detectPcRelation = detectPcRelationMapper.selectByPrimaryKey(normal_vDetectPc.getId());
+				Pc pc = pcMapper.selectByPrimaryKey(normal_vDetectPc.getAssetCode());
+				DetectPort detectPort = detectPortMapper.selectByPrimaryKey(detectPcRelation.getPortId());
+				
 				detectPcRelation.setStatus(HeliosConstants.RELATION_ABNORMAL);
 				detectPcRelation.setUptTime(new Date());
 				detectPcRelation.setUptUser("system");
 				detectPcRelationMapper.updateByPrimaryKeySelective(detectPcRelation);
 				
-				pc.setStatus("1");
+				pc.setStatus(HeliosConstants.RELATION_ABNORMAL);
 				pc.setUptTime(new Date());
 				pc.setUptUser("system");
 				pcMapper.updateByPrimaryKeySelective(pc);
+				
+				detectPort.setStatus(HeliosConstants.RELATION_ABNORMAL);
+				detectPort.setUptName(new Date());
+				detectPort.setUptUser("system");
+				detectPortMapper.updateByPrimaryKeySelective(detectPort);
 				
 				Alarm alarm = new Alarm();
 				alarm.setCrtTime(new Date());

@@ -49,7 +49,7 @@ public class DetectPcController {
 		log.debug("jsb:{}", jsb);
 		String id = jsb.getString("id");
 
-		detectPcService.deleteRelation(id);
+		detectPcService.deleteRelation(id,request.getSession().getAttribute("userId").toString());
 		logService.addLog(request, "删除pc与侦测器端口关联："+jsb.toJSONString());
 		ResponseSuccessResult responseResult = new ResponseSuccessResult(HttpStatus.OK.value(), "success");
 		return new ResponseEntity<>(responseResult, HttpStatus.OK);

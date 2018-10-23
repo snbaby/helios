@@ -62,7 +62,21 @@
     <if test="detectId != ''">
       and DETECT_ID = #{detectId,jdbcType=VARCHAR}
     </if>
+    order by PORT asc
   </select>
+  
+  <select id="useableList" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from DETECT_PORT
+    where 1=1
+    <if test="detectId != ''">
+      and DETECT_ID = #{detectId,jdbcType=VARCHAR}
+    </if>
+    and ID NOT IN (select PORT_ID from DETECT_PC_RELATION)
+    order by PORT asc
+  </select>
+  
   <insert id="insert" parameterType="com.seadun.helios.entity.DetectPort">
     insert into DETECT_PORT (ID, DETECT_ID, CODE, 
       NAME, PORT, STATUS, 

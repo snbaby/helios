@@ -11,8 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.github.pagehelper.PageInfo;
 import com.seadun.helios.constant.HeliosConstants;
 import com.seadun.helios.entity.DetectPcRelation;
+import com.seadun.helios.entity.DetectPort;
 import com.seadun.helios.entity.Pc;
 import com.seadun.helios.mapper.DetectPcRelationMapper;
+import com.seadun.helios.mapper.DetectPortMapper;
 import com.seadun.helios.mapper.PcMapper;
 
 @Service
@@ -21,6 +23,8 @@ public class PcService {
 	private PcMapper pcMapper;
 	@Autowired
 	private DetectPcRelationMapper detectPcRelationMapper;
+	@Autowired
+	private DetectPortMapper detectPortMapper;
 	
 	
 	@Transactional
@@ -38,12 +42,18 @@ public class PcService {
 	}
 	
 	@Transactional
+	public List<Pc> useableLit() {
+		return pcMapper.useableLit();
+	}
+	
+	@Transactional
 	public void rebackConfirm(String assetCode,String userId) {
 		Pc pc = pcMapper.selectByPrimaryKey(assetCode);
 		pc.setStatus(HeliosConstants.RELATION_NORMAL);//
 		pc.setUptTime(new Date());
 		pc.setUptUser(userId);
 		pcMapper.updateByPrimaryKeySelective(pc);
+		
 		DetectPcRelation detectPcRelation = detectPcRelationMapper.selectByPcCode(assetCode);
 		if(detectPcRelation == null) {
 			return;
@@ -53,5 +63,10 @@ public class PcService {
 		detectPcRelation.setUptUser(userId);
 		detectPcRelationMapper.updateByPrimaryKeySelective(detectPcRelation);
 		
+		DetectPort detectPort = detectPortMapper.selectByPrimaryKey(detectPcRelation.getPortId());
+		detectPort.setStatus(HeliosConstants.RELATION_NORMAL);
+		detectPort.setUptName(new Date());
+		detectPort.setUptUser(userId);
+		detectPortMapper.updateByPrimaryKey(detectPort);
 	}
 }

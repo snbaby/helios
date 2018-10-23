@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.seadun.helios.constant.HeliosConstants;
 import com.seadun.helios.entity.BaseMenu;
 import com.seadun.helios.entity.BaseMenuResource;
 import com.seadun.helios.entity.BaseRole;
@@ -156,7 +157,7 @@ public class InitService {
 		detectMenu.setCode("detectManage");
 		detectMenu.setCrtTime(new Date());
 		detectMenu.setCrtUser("system");
-		detectMenu.setName("侦测器");
+		detectMenu.setName("侦测器管理");
 		detectMenu.setParentId(eqManageMenu.getId());
 		detectMenu.setPath("/helios/eq-manage/detect-manage");
 		baseMenuMapper.insertSelective(detectMenu);
@@ -382,7 +383,7 @@ public class InitService {
 			pc.setOrgCode(assetPcJsb.getString("ORGNAME"));
 			pc.setOrgName(assetPcJsb.getString("ORGNAME"));
 			pc.setAzwz(assetPcJsb.getString("AZWZ"));
-			pc.setStatus("0");
+			pc.setStatus(HeliosConstants.RELATION_DEFAULT);
 			pc.setCrtTime(new Date());
 			pc.setCrtUser("system");
 			pcMapper.insertSelective(pc);

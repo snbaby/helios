@@ -28,5 +28,7 @@ public interface DetectPortMapper {
 	
 	List<DetectPort> list(@Param(value = "detectId") String detectId);
 	
+	List<DetectPort> useableList(@Param(value = "detectId") String detectId);
+	
 	
 }

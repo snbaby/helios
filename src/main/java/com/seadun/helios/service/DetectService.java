@@ -77,7 +77,7 @@ public class DetectService {
 			detectPort.setId(UUID.randomUUID().toString());
 			detectPort.setName("U"+i);
 			detectPort.setPort((short) (HeliosConstants.BASE_PORT+i));
-			detectPort.setStatus("0");
+			detectPort.setStatus("-1");
 			
 			detectPortMapper.insertSelective(detectPort);
 		}
