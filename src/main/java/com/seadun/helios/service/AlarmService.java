@@ -15,16 +15,16 @@ import com.seadun.helios.constant.HeliosExceptionConstants;
 import com.seadun.helios.entity.Alarm;
 import com.seadun.helios.entity.BaseLog;
 import com.seadun.helios.entity.DetectPcRelation;
+import com.seadun.helios.entity.DetectPort;
 import com.seadun.helios.entity.HeliosException;
 import com.seadun.helios.entity.Pc;
 import com.seadun.helios.entity.VAlarm;
-import com.seadun.helios.entity.VDetectPc;
 import com.seadun.helios.mapper.AlarmMapper;
 import com.seadun.helios.mapper.BaseLogMapper;
 import com.seadun.helios.mapper.DetectPcRelationMapper;
+import com.seadun.helios.mapper.DetectPortMapper;
 import com.seadun.helios.mapper.PcMapper;
 import com.seadun.helios.mapper.VAlarmMapper;
-import com.seadun.helios.mapper.VDetectPcMapper;
 import com.serotonin.modbus4j.ModbusFactory;
 import com.serotonin.modbus4j.ModbusMaster;
 import com.serotonin.modbus4j.code.DataType;
@@ -39,8 +39,6 @@ public class AlarmService {
 	@Autowired
 	private VAlarmMapper vAlarmMapper;
 	@Autowired
-	private VDetectPcMapper vDetectPcMapper;
-	@Autowired
 	private BaseLogMapper baseLogMapper;
 	@Autowired
 	private DetectPcRelationMapper detectPcRelationMapper;
@@ -48,6 +46,8 @@ public class AlarmService {
 	private PcMapper pcMapper;
 	@Autowired
 	private AlarmMapper alarmMapper;
+	@Autowired
+	private DetectPortMapper detectPortMapper;
 
 	@Transactional
 	public PageInfo<VAlarm> page(int pageNum, int pageSize, String detectId, String assetCode) {
@@ -105,6 +105,12 @@ public class AlarmService {
 			pc.setUptTime(new Date());
 			pc.setUptUser(userId);
 			pcMapper.updateByPrimaryKeySelective(pc);
+			
+			DetectPort detectPort = detectPortMapper.selectByCode(vAlarm.getPortCode());
+			detectPort.setStatus(HeliosConstants.RELATION_NORMAL);
+			detectPort.setUptName(new Date());
+			detectPort.setUptUser(userId);
+			detectPortMapper.updateByPrimaryKeySelective(detectPort);
 
 			Alarm alarm = alarmMapper.selectByPrimaryKey(alarmId);
 			alarm.setMessage(message);
