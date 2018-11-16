@@ -41,6 +41,7 @@
     select 
     <include refid="Base_Column_List" />
     from DETECT
+    order by NAME
   </select>
   <select id="selectPage" resultMap="BaseResultMap">
     select 
