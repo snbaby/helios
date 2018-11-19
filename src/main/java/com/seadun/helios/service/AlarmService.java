@@ -50,10 +50,10 @@ public class AlarmService {
 	private DetectPortMapper detectPortMapper;
 
 	@Transactional
-	public PageInfo<VAlarm> page(int pageNum, int pageSize, String detectId, String assetCode) {
+	public PageInfo<VAlarm> page(int pageNum, int pageSize, String detectId, String assetCode, String alarmStatus) {
 		RowBounds rowBounds = new RowBounds(pageNum, pageSize);
 
-		List<VAlarm> vAlarmList = vAlarmMapper.selectPage(rowBounds, detectId, assetCode);
+		List<VAlarm> vAlarmList = vAlarmMapper.selectPage(rowBounds, detectId, assetCode, alarmStatus);
 		PageInfo<VAlarm> pageInfo = new PageInfo<VAlarm>(vAlarmList);// 封装分页信息，便于前端展示
 		return pageInfo;
 	}

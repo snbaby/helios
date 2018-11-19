@@ -31,9 +31,10 @@ public class AlarmController {
 		int pageSize = jsb.getIntValue("pageSize");
 		String assetCode = jsb.getString("assetCode");
 		String detectId = jsb.getString("detectId");
+		String alarmStatus = jsb.getString("alarmStatus");
 
 		ResponseSuccessResult responseResult = new ResponseSuccessResult(HttpStatus.OK.value(), "success",
-				alarmService.page(pageNum, pageSize, detectId, assetCode));
+				alarmService.page(pageNum, pageSize, detectId, assetCode, alarmStatus));
 		return new ResponseEntity<>(responseResult, HttpStatus.OK);
 	}
 	

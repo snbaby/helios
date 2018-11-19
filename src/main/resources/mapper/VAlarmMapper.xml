@@ -122,6 +122,10 @@
 		<if test="detectId != ''">
 			and DETECT_ID = #{detectId,jdbcType=VARCHAR}
 		</if>
+		<if test="alarmStatus != ''">
+			and ALARM_STATUS = #{alarmStatus,jdbcType=VARCHAR}
+		</if>
+		order by CRT_TIME desc
 	</select>
 	<select
 		id="selectByAlarmId"
